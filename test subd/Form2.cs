@@ -33,22 +33,22 @@ namespace test_subd
         private void Form2_Load(object sender, EventArgs e)
         {
             
-            //if (roleForm == 2 || roleForm == 3 || roleForm == 4 || roleForm == 6 || roleForm == 7 || roleForm == 10)
-            //{
-            //    addString.Visible = false;
-            //    delString.Visible = false;
-            //}   
-                SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString); // тут надо вставить переменную  
-
+            if (roleForm != 1)
+            {
+                delString.Enabled = false;
+                comboBox1.Items.RemoveAt(3);
+                comboBox1.Items.RemoveAt(3);
+                comboBox1.Items.RemoveAt(3);
+            }   
+            SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString); // тут надо вставить переменную  
+                
             sqlConnect.Open();
-            SqlCommand logRequst = new SqlCommand();
-            logRequst.CommandText = $"SELECT * FROM Users";
-
-            logRequst.Connection = sqlConnect;
-
+            SqlCommand showTable = new SqlCommand();
+            showTable.CommandText = $"SELECT * FROM Clients";
+            showTable.Connection = sqlConnect;
 
             // SqlAdapter - прослойка между источником данных и базой данных
-            SqlDataAdapter adapter = new SqlDataAdapter(logRequst);
+            SqlDataAdapter adapter = new SqlDataAdapter(showTable);
             DataSet dataSet = new DataSet();
             // заполняем источник данных полученными из адаптера записями
             adapter.Fill(dataSet);
@@ -95,7 +95,30 @@ namespace test_subd
         {
             SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString);
             SqlCommand logRequst = new SqlCommand();
-            logRequst.CommandText = $"SELECT * FROM {comboBox1.SelectedItem.ToString()}";
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    logRequst.CommandText = $"SELECT * FROM Clients";
+                    break;
+                case 1:
+                    logRequst.CommandText = $"SELECT Orders.id, Users.name_u AS name_master, Clients.name_c AS name_client, Orders.price, " +
+                        $"Orders.date_order, Orders.date_complete FROM Orders  JOIN Users ON Users.id = Orders.id_master JOIN Clients ON Clients.id = Orders.id_client";
+                    break;
+                case 2:
+                    logRequst.CommandText = $"SELECT Services_to_orders.id_o, Services.name_s AS name_serv FROM Services_to_orders JOIN Services " +
+                        $"ON Services.id = Services_to_orders.id_s";
+                    break;
+                case 3:
+                    logRequst.CommandText = $"SELECT * FROM Services";
+                    break;
+                case 4:
+                    logRequst.CommandText = $"SELECT Users.id, Roles.name_r AS role_u, Users.name_u, Users.surname_u," +
+                        $" Users.tel_num_u, Users.pw, Users.listed FROM Users JOIN Roles ON Roles.id = Users.role_u";
+                    break;
+                case 5:
+                    logRequst.CommandText = $"SELECT * FROM Roles";
+                    break;
+            }
 
             logRequst.Connection = sqlConnect;
 
@@ -140,8 +163,8 @@ namespace test_subd
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-            Form fm = Application.OpenForms["Form1"];
-            fm.ShowDialog();
+            Form mainForm = Application.OpenForms["frmAuthorization"];
+            mainForm.Show();
         }
 
         private void label4_Click(object sender, EventArgs e)

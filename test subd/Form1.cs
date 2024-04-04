@@ -30,41 +30,6 @@ namespace test_subd
 
         private void btnConnect_Click(object sender, EventArgs e) // Войти
         {
-            /*try
-            {
-                if (connect.State == ConnectionState.Closed)
-                    connect.Open();
-                MessageBox.Show("Подключение установлено");
-
-
-
-                // если процедуры нет 
-                SqlCommand command = new SqlCommand($"Select * from [Users] where tel_num_u = '{tbLogin.Text}' and pw = '{tbPassword.Text}' ", connect);
-
-                // подготавливаем команду для чтения
-                SqlDataReader dataReader = command.ExecuteReader();
-                dataReader.Read();
-
-
-                if (dataReader.HasRows) // если есть хоть одна строка 
-                {
-                    Form2 fm = new Form2(connect, dataReader.GetInt32(2));
-                    fm.ShowDialog();
-
-
-                    this.Hide();
-                }
-                else
-                    MessageBox.Show("Неверный логин или пароль");
-
-                SqlCommand logRequst = new SqlCommand();
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Не удалось создать подключение: {ex.Message}");
-                return;
-            }*/
 
             string login = tbLogin.Text.Trim();
             string password = tbPassword.Text.Trim();
@@ -99,11 +64,14 @@ namespace test_subd
                         int role = Convert.ToInt32(roleObj);
 
                         MessageBox.Show("Авторизация успешна!");
+                        
+                        this.Hide();
+                        
                         // Здесь можно перейти к другой форме или выполнить другие действия
                         Form2 fm = new Form2(connect, role);
                         fm.ShowDialog();
 
-                        this.Hide();
+                        
                     }
                     else
                     {
@@ -118,6 +86,10 @@ namespace test_subd
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка: " + ex.Message);
+            }
+            finally
+            {
+                connect.Close();
             }
 
 

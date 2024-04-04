@@ -69,7 +69,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(454, 484);
+            this.button1.Location = new System.Drawing.Point(658, 484);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(115, 23);
             this.button1.TabIndex = 1;
@@ -91,10 +91,18 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Клиенты",
+            "Заказы",
+            "Услуги к заказам",
+            "Услуги",
+            "Пользователи",
+            "Роли"});
             this.comboBox1.Location = new System.Drawing.Point(110, 98);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(118, 21);
             this.comboBox1.TabIndex = 7;
+            this.comboBox1.Text = "Клиенты";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label3
