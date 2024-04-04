@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+
+namespace WindowsFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnect = new SqlConnection(Properties.Setings.Default); // тут надо вставить переменную  
+
+            sqlConnect.Open();
+            SqlCommand logRequst = new SqlCommand();
+            logRequst.CommandText = $"SELECT * FROM Product";
+            
+            logRequst.Connection = sqlConnect;
+
+
+            // SqlAdapter - прослойка между источником данных и базой данных
+            SqlDataAdapter adapter = new SqlDataAdapter(logRequst);
+            DataSet dataSet = new DataSet();
+            // заполняем источник данных полученными из адаптера записями
+            adapter.Fill(dataSet);
+            dataGridView1.DataSource = dataSet.Tables[0];
+
+            label1.Text = Convert.ToString(dataSet.Tables[0].Rows.Count); //считаем строчки
+
+            sqlConnect.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            // Оставляем строки, которые удовлетворяют условию
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"ProductName LIKE '%{textBox1.Text}%'";
+            // диапазон даты
+            
+            // пересчитываем количество записей в лейбле
+            label1.Text = (dataGridView1.Rows.Count - 1). ToString();
+
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"Date > {dateTimePicker1.Value} AND Date < {dateTimePicker2}";
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"Date > {dateTimePicker1.Value} AND Date < {dateTimePicker2}";
+        }
+    }
+}

@@ -1,0 +1,3 @@
+insert into roles (name_r) values
+('admin'),
+('user');

@@ -1,0 +1,57 @@
+CREATE TABLE [Clients] (
+	[id] int IDENTITY(1,1) NOT NULL UNIQUE,
+	[name_c] varchar(15) NOT NULL,
+	[tel_num_c] varchar(10) NOT NULL,
+	[addres_c] varchar(50) NOT NULL,
+	PRIMARY KEY ([id])
+);
+
+CREATE TABLE [Orders] (
+	[id] int IDENTITY(1,1) NOT NULL UNIQUE,
+	[id_master] int NOT NULL,
+	[id_client] int NOT NULL,
+	[price] int NOT NULL,
+	[date_order] date NOT NULL,
+	[date_complete] date NOT NULL,
+	PRIMARY KEY ([id])
+);
+
+CREATE TABLE [Roles] (
+	[id] int IDENTITY(1,1) NOT NULL UNIQUE,
+	[name_r] varchar(5) NOT NULL,
+	PRIMARY KEY ([id])
+);
+
+CREATE TABLE [Services_to_orders] (
+	[id_o] int NOT NULL,
+	[id_s] int NOT NULL
+);
+
+CREATE TABLE [Services] (
+	[id] int IDENTITY(1,1) NOT NULL UNIQUE,
+	[name_s] varchar(40) NOT NULL,
+	[cost_s] int NOT NULL,
+	PRIMARY KEY ([id])
+);
+
+CREATE TABLE [Users] (
+	[id] int IDENTITY(1,1) NOT NULL UNIQUE,
+	[role_u] int NOT NULL,
+	[name_u] varchar(15) NOT NULL,
+	[surname_u] varchar(15) NOT NULL,
+	[tel_num_u] varchar(10) NOT NULL,
+	[pw] varchar(8) NOT NULL,
+	[listed] bit NOT NULL,
+	PRIMARY KEY ([id])
+);
+
+
+ALTER TABLE [Orders] ADD CONSTRAINT [Orders_fk1] FOREIGN KEY ([id_master]) REFERENCES [Users]([id]);
+
+ALTER TABLE [Orders] ADD CONSTRAINT [Orders_fk2] FOREIGN KEY ([id_client]) REFERENCES [Clients]([id]);
+
+ALTER TABLE [Services_to_orders] ADD CONSTRAINT [Services_to_orders_fk0] FOREIGN KEY ([id_o]) REFERENCES [Orders]([id]);
+
+ALTER TABLE [Services_to_orders] ADD CONSTRAINT [Services_to_orders_fk1] FOREIGN KEY ([id_s]) REFERENCES [Services]([id]);
+
+ALTER TABLE [Users] ADD CONSTRAINT [Users_fk1] FOREIGN KEY ([role_u]) REFERENCES [Roles]([id]);

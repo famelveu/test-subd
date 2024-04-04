@@ -1,0 +1,5 @@
+INSERT INTO users (role_u, name_u, surname_u, tel_num_u, pw, listed) VALUES
+(1, 'Vyacheslav', 'Kotelnikov', '9123456789', 'ASC12345', 1),
+(1, 'David', 'Golovanov', '9012345678', 'POP11122', 1),
+(2, 'Timofey', 'ChiChikov', '9912345678', 'KOR00000', 1),
+(2, 'John', 'Null', '9891234567', 'PIS11223', 1);
