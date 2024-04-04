@@ -35,28 +35,28 @@ namespace test_subd
             
             //if (roleForm == 2 || roleForm == 3 || roleForm == 4 || roleForm == 6 || roleForm == 7 || roleForm == 10)
             //{
-           //     addString.Visible = false;
-           //     delString.Visible = false;
-           // }   
-            //    SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString); // тут надо вставить переменную  
+            //    addString.Visible = false;
+            //    delString.Visible = false;
+            //}   
+                SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString); // тут надо вставить переменную  
 
-           // sqlConnect.Open();
-            //SqlCommand logRequst = new SqlCommand();
-            //logRequst.CommandText = $"SELECT * FROM Goods";
+            sqlConnect.Open();
+            SqlCommand logRequst = new SqlCommand();
+            logRequst.CommandText = $"SELECT * FROM Users";
 
-            //logRequst.Connection = sqlConnect;
+            logRequst.Connection = sqlConnect;
 
 
             // SqlAdapter - прослойка между источником данных и базой данных
-           // SqlDataAdapter adapter = new SqlDataAdapter(logRequst);
-           // DataSet dataSet = new DataSet();
+            SqlDataAdapter adapter = new SqlDataAdapter(logRequst);
+            DataSet dataSet = new DataSet();
             // заполняем источник данных полученными из адаптера записями
-          //  adapter.Fill(dataSet);
-            //dataGridView1.DataSource = dataSet.Tables[0];
+            adapter.Fill(dataSet);
+            dataGridView1.DataSource = dataSet.Tables[0];
 
-            //label1.Text = Convert.ToString(dataSet.Tables[0].Rows.Count); //считаем строчки
+            label1.Text = Convert.ToString(dataSet.Tables[0].Rows.Count); //считаем строчки
 
-            //sqlConnect.Close();
+            sqlConnect.Close();
         }
 
         private void label2_Click(object sender, EventArgs e)
