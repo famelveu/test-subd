@@ -37,7 +37,6 @@ namespace test_subd
             try
             {
                 connect.Open();
-
                 // Проверка логина и пароля
                 string query = "SELECT COUNT(*) FROM Users WHERE tel_num_u = @Username AND pw = @Password";
                 SqlCommand command = new SqlCommand(query, connect);
@@ -64,14 +63,12 @@ namespace test_subd
                         int role = Convert.ToInt32(roleObj);
 
                         MessageBox.Show("Авторизация успешна!");
-                        
+
                         this.Hide();
-                        
+
                         // Здесь можно перейти к другой форме или выполнить другие действия
                         Form2 fm = new Form2(connect, role);
                         fm.ShowDialog();
-
-                        
                     }
                     else
                     {
@@ -82,6 +79,7 @@ namespace test_subd
                 {
                     MessageBox.Show("Неверный логин или пароль!");
                 }
+                
             }
             catch (Exception ex)
             {
@@ -91,20 +89,6 @@ namespace test_subd
             {
                 connect.Close();
             }
-
-
-            /* если создана процедура CheckLogin
-
-            SqlCommand command = new SqlCommand();
-            command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = "CheckLogin";
-            command.Parameters.AddWithValue("@user_login", tbLogin.Text);
-            command.Parameters.AddWithValue("@user_password", tbPassword.Text); */
-
-
-
-
-
         }
     }
 }

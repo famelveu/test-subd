@@ -12,6 +12,7 @@ using System.Runtime.Remoting.Contexts;
 using Microsoft.SqlServer.Server;
 using static System.Windows.Forms.DataFormats;
 using System.Data.Common;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace test_subd
@@ -54,7 +55,7 @@ namespace test_subd
             adapter.Fill(dataSet);
             dataGridView1.DataSource = dataSet.Tables[0];
 
-            label1.Text = Convert.ToString(dataSet.Tables[0].Rows.Count); //считаем строчки
+            UpdateComboBoxWithDataGridColumns(cbColumn, dataGridView1);
 
             sqlConnect.Close();
         }
@@ -64,32 +65,6 @@ namespace test_subd
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            string filterValue = textBox1.Text;
-            if (!string.IsNullOrEmpty(filterValue))
-            {
-                if (int.TryParse(filterValue, out int numericValue))
-                {
-                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"CONVERT([{textBoxColumn.Text}], 'System.Int32') = {numericValue}";
-                }
-                else
-                {
-                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"[{textBoxColumn.Text}] LIKE '%{filterValue}%'";
-                }
-            }
-            else
-            {
-                (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
-            }
-            // Оставляем строки, которые удовлетворяют условию
-
-            // диапазон даты
-
-            // пересчитываем количество записей в лейбле
-            label1.Text = (dataGridView1.Rows.Count - 1).ToString();
-
-        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -122,42 +97,19 @@ namespace test_subd
 
             logRequst.Connection = sqlConnect;
 
-
             // SqlAdapter - прослойка между источником данных и базой данных
-            if (roleForm == 1 || roleForm == 5 || roleForm == 8 || roleForm == 9)
-            {
-                SqlDataAdapter adapter = new SqlDataAdapter(logRequst);
-                DataSet dataSet = new DataSet();
-                // заполняем источник данных полученными из адаптера записями
-                adapter.Fill(dataSet);
+            SqlDataAdapter adapter = new SqlDataAdapter(logRequst);
+            DataSet dataSet = new DataSet();
+            // заполняем источник данных полученными из адаптера записями
+            adapter.Fill(dataSet);
+            dataGridView1.DataSource = dataSet.Tables[0];
 
-                dataGridView1.DataSource = dataSet.Tables[0];
+            UpdateComboBoxWithDataGridColumns(cbColumn, dataGridView1);
 
-                label1.Text = Convert.ToString(dataSet.Tables[0].Rows.Count); //считаем строчки
+            tbDataSearch.Clear();
 
-                sqlConnect.Close();
-            }
-            else
-            {
-                if (comboBox1.SelectedItem.ToString() != "Goods" && comboBox1.SelectedItem.ToString() != "TypeGoods" && comboBox1.SelectedItem.ToString() != "FirmsGoods")
-                {
-                    MessageBox.Show("У вас нет доступа к этой таблице");
-                }
-                else
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(logRequst);
-                    DataSet dataSet = new DataSet();
-                    // заполняем источник данных полученными из адаптера записями
-                    adapter.Fill(dataSet);
+            sqlConnect.Close();
 
-                    dataGridView1.DataSource = dataSet.Tables[0];
-
-                    label1.Text = Convert.ToString(dataSet.Tables[0].Rows.Count); //считаем строчки
-
-                    sqlConnect.Close();
-                }
-            }
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -180,16 +132,48 @@ namespace test_subd
             Form3 fm = new Form3(connect, roleForm, boxItem);
             fm.ShowDialog();
         }
-    }
-    /*
-private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-{
-(dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"Date > {dateTimePicker1.Value} AND Date < {dateTimePicker2}";
-}
 
-private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-{
-(dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"Date > {dateTimePicker1.Value} AND Date < {dateTimePicker2}";
-}
-*/
+        private void tbDataSeatch_TextChanged(object sender, EventArgs e)
+        {
+            string filterValue = tbDataSearch.Text;
+            if (!string.IsNullOrEmpty(filterValue))
+            {
+                if (int.TryParse(filterValue, out int numericValue))
+                {
+                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"CONVERT([{cbColumn.Text}], 'System.Int32') = {numericValue}";
+                }
+                else
+                {
+                    (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"[{cbColumn.Text}] LIKE '%{filterValue}%'";
+                }
+            }
+            else
+            {
+                (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+            }
+        }
+        private void UpdateComboBoxWithDataGridColumns(System.Windows.Forms.ComboBox comboBox, DataGridView dataGridView)
+        {
+            // Очистка коллекции элементов ComboBox перед добавлением новых значений
+            comboBox.Items.Clear();
+
+            // Получение названий столбцов из DataGridView
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                // Добавление названий столбцов в коллекцию элементов ComboBox
+                comboBox.Items.Add(column.HeaderText);
+            }
+
+            // Выбор первого элемента в ComboBox (если нужно)
+            if (comboBox.Items.Count > 0)
+            {
+                comboBox.SelectedIndex = 0;
+            }
+        }
+
+        private void cbColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbDataSearch.Clear();
+        }
+    }
 }
