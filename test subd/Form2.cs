@@ -36,12 +36,13 @@ namespace test_subd
             
             if (roleForm != 1)
             {
-                delString.Enabled = false;
+                btDelString.Enabled = false;
+                btEditString.Enabled = false;
                 comboBox1.Items.RemoveAt(3);
                 comboBox1.Items.RemoveAt(3);
                 comboBox1.Items.RemoveAt(3);
             }   
-            SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString); // тут надо вставить переменную  
+            SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString);  
                 
             sqlConnect.Open();
             SqlCommand showTable = new SqlCommand();
@@ -126,10 +127,9 @@ namespace test_subd
 
         private void addString_Click(object sender, EventArgs e)
         {
-            string boxItem = comboBox1.SelectedItem.ToString(); 
+            int boxItem = comboBox1.SelectedIndex; 
             this.Hide();
-            //Form fm = Application.OpenForms["Form3"];
-            Form3 fm = new Form3(connect, roleForm, boxItem);
+            Form3 fm = new Form3(connect, boxItem, roleForm);
             fm.ShowDialog();
         }
 

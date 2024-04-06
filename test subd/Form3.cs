@@ -4,26 +4,207 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace test_subd
 {
     public partial class Form3 : Form
     {
         private SqlConnection connect;
-        private int roleForm;
-        private string boxItem;
+        private int selectedTable;
+        private int rlu;
 
-        public Form3(SqlConnection cnct, int rl, string item)
+        public Form3(SqlConnection cnct, int boxItem, int role)
         {
-            connect = cnct;
-            roleForm = rl;
-            boxItem = item;
+            connect = cnct;;
             InitializeComponent();
+            rlu = role;
+            selectedTable = boxItem;
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
+            if (rlu != 1)
+            { 
+                tabControl1.TabPages[3].Hide();
+                tabControl1.TabPages[4].Hide();
+                tabControl1.TabPages[5].Hide();
+            }
+
+            switch (selectedTable)
+            {
+                case 0:
+                    tabControl1.SelectedIndex = selectedTable;
+                    break;
+                case 1:
+                    tabControl1.SelectedIndex = selectedTable;
+
+                    // Создаем словарь для хранения значений из таблицы Users
+                    Dictionary<int, Tuple<string, string>> usersDictionary = new Dictionary<int, Tuple<string, string>>();
+
+                    string queryUsers = "SELECT id, name_u, tel_num_u FROM Users";
+                    using (SqlCommand command = new SqlCommand(queryUsers, connect))
+                    {
+                        // Выполняем запрос и получаем результаты
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Перебираем строки результата
+                            while (reader.Read())
+                            {
+                                // Получаем значения столбцов id, name_u и tel_num_u
+                                int id = reader.GetInt32(0);
+                                string name = reader.GetString(1);
+                                string telNum = reader.GetString(2);
+
+                                // Добавляем значения в словарь в виде кортежа
+                                usersDictionary.Add(id, Tuple.Create(name, telNum));
+                            }
+                        }
+                    }
+                    foreach (var kvp in usersDictionary)
+                    {
+                        cbOrdersId_maser.Items.Add($"{kvp.Key}. {kvp.Value.Item1} - {kvp.Value.Item2}");
+                    }
+
+                    // Создаем словарь для хранения значений из таблицы Clients
+                    Dictionary<int, Tuple<string, string>> clientsDictionary = new Dictionary<int, Tuple<string, string>>();
+
+                    string queryClients = "SELECT id, name_c, tel_num_c FROM Clients";
+                    using (SqlCommand command = new SqlCommand(queryClients, connect))
+                    {
+                        // Выполняем запрос и получаем результаты
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Перебираем строки результата
+                            while (reader.Read())
+                            {
+                                // Получаем значения столбцов id, name_c и tel_num_c
+                                int id = reader.GetInt32(0);
+                                string name = reader.GetString(1);
+                                string telNum = reader.GetString(2);
+
+                                // Добавляем значения в словарь в виде кортежа
+                                clientsDictionary.Add(id, Tuple.Create(name, telNum));
+                            }
+                        }
+                    }
+                    foreach (var kvp in clientsDictionary)
+                    {
+                        cbOrdersId_client.Items.Add($"{kvp.Key}. {kvp.Value.Item1} - {kvp.Value.Item2}");
+                    }
+
+                    break;
+                case 2:
+                    tabControl1.SelectedIndex = selectedTable;
+
+                    // Создаем словарь для хранения значений из таблицы Roles
+                    Dictionary<int, string> servicesDictionary = new Dictionary<int, string>();
+
+                    // Создаем команду для выполнения запроса к таблице Roles
+                    string queryServices = "SELECT id, name_s FROM Services";
+                    using (SqlCommand command = new SqlCommand(queryServices, connect))
+                    {
+                        // Выполняем запрос и получаем результаты
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Перебираем строки результата
+                            while (reader.Read())
+                            {
+                                // Получаем значения столбцов id и name_s
+                                int id = reader.GetInt32(0);
+                                string name_s = reader.GetString(1);
+
+                                // Добавляем значения в словарь
+                                servicesDictionary.Add(id, name_s);
+                            }
+                        }
+                    }
+
+                    // Выводим содержимое словаря в cbS_t_oId_s
+                    foreach (var kvp in servicesDictionary)
+                    {
+                        cbS_t_oId_s.Items.Add($"{kvp.Key}. {kvp.Value}");
+                    }
+
+                    // Создаем список для хранения id заказов
+                    List<int> ordersList = new List<int>();
+
+                    // Создаем команду для выполнения запроса к таблице Orders
+                    string query = "SELECT id FROM Orders";
+                    using (SqlCommand command = new SqlCommand(query, connect))
+                    {
+                        // Выполняем запрос и получаем результаты
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Перебираем строки результата и добавляем id заказов в список
+                            while (reader.Read())
+                            {
+                                int orderId = reader.GetInt32(0);
+                                ordersList.Add(orderId);
+                            }
+                        }
+                    }
+                    // Добавляем элементы списка в ComboBox
+                    foreach (int orderId in ordersList)
+                    {
+                        cbS_t_oId_o.Items.Add(orderId);
+                    }
+                    break;
+                case 3:
+                    tabControl1.SelectedIndex = selectedTable;
+                    break;
+                case 4:
+                    tabControl1.SelectedIndex = selectedTable;
+
+                    // Создаем словарь для хранения значений из таблицы Roles
+                    Dictionary<int, string> rolesDictionary = new Dictionary<int, string>();
+
+                    // Создаем команду для выполнения запроса к таблице Roles
+                    string queryRoles = "SELECT id, name_r FROM Roles";
+                    using (SqlCommand command = new SqlCommand(queryRoles, connect))
+                    {
+                        // Выполняем запрос и получаем результаты
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Перебираем строки результата
+                            while (reader.Read())
+                            {
+                                // Получаем значения столбцов id и name_r
+                                int id = reader.GetInt32(0);
+                                string name_r = reader.GetString(1);
+
+                                // Добавляем значения в словарь
+                                rolesDictionary.Add(id, name_r);
+                            }
+                        }
+                    }
+
+                    // Выводим содержимое словаря в cbUsersRole_u
+                    foreach (var kvp in rolesDictionary)
+                    {
+                        cbUsersRole_u.Items.Add($"{kvp.Key}. {kvp.Value}");
+                    }
+
+                    break;
+                case 5:
+                    tabControl1.SelectedIndex = selectedTable;
+                    break;
+            }
+
+            for (int i = 0; i < tabControl1.TabCount; i++)
+            {
+                // Устанавливаем Enabled = false для всех вкладок, кроме выбранной
+                if (i != selectedTable)
+                {
+                    tabControl1.TabPages[i].Enabled = false;
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.connectionString))
+            /*using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.connectionString))
             {
                 conn.Open();
                 SqlCommand logRequest = new SqlCommand();
@@ -84,399 +265,10 @@ namespace test_subd
 
                 logRequest.ExecuteNonQuery();
                 MessageBox.Show("Запись успешно добавлена");
-            }
+            }*/
         }
 
-        private void Form3_Load(object sender, EventArgs e)
-        {
-            if (connect.State == ConnectionState.Open)
-            {
-                connect.Close();
-            }
 
-            if (boxItem == "Goods")
-            {
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-                textBox3.Visible = true;
-                textBox4.Visible = true;
-                textBox5.Visible = true;
-                textBox6.Visible = true;
-
-                comboBox1.Visible = true;
-
-                label1.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
-                label6.Visible = true;
-                label7.Visible = true;
-
-                using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.connectionString))
-                {
-                    conn.Open();
-                    SqlCommand logRequest = new SqlCommand("Select fgid, fgfirms from FirmsGoods", conn);
-
-                    using (SqlDataReader rdr = logRequest.ExecuteReader())
-                    {
-                        List<Categories> lstCategories = new List<Categories>();
-
-                        while (rdr.Read())
-                        {
-                            lstCategories.Add(new Categories(Convert.ToInt32(rdr["fgid"]), rdr["fgfirms"].ToString()));
-                        }
-
-                        comboBox1.DataSource = lstCategories;
-                        comboBox1.DisplayMember = "name";
-                        comboBox1.ValueMember = "id";
-                        comboBox1.Text = "";
-                    }
-                }
-            }
-            else if (boxItem == "FirmsGoods")
-            {
-                label1.Text = "fgid";
-                label2.Text = "fgfirms";
-
-                label1.Visible = true;
-                label3.Visible = true;
-
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-            }
-            else if (boxItem == "EmployeeDriver")
-            {
-                label1.Text = "employeeDriverID";
-                label2.Text = "employeeDriverFIO";
-
-                label1.Visible = true;
-                label3.Visible = true;
-
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-            }
-            else if (boxItem == "Container")
-            {
-                label1.Text = "containerID";
-                label2.Text = "containerType";
-
-                label1.Visible = true;
-                label3.Visible = true;
-
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-            }
-            else if (boxItem == "Delivery")
-            {
-
-                label1.Text = "deliveryID";
-                label2.Text = "orderID";
-                label3.Text = "employeesDriverID";
-                label4.Text = "transportID";
-                label5.Text = "containerID";
-                label6.Text = "destination";
-
-                textBox1.Visible = true;
-                textBox5.Visible = true;
-
-                comboBox1.Visible = true;
-                comboBox2.Visible = true;
-                comboBox3.Visible = true;
-                comboBox4.Visible = true;
-
-                label1.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
-                label6.Visible = true;
-
-                using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.connectionString))
-                {
-                    conn.Open();
-                    // order
-                    SqlCommand orderCommand = new SqlCommand("Select orderid from Orders", conn);
-
-                    SqlDataReader reader1 = orderCommand.ExecuteReader();
-
-                    if (reader1.HasRows)
-                    {
-                        while (reader1.Read())
-                        {
-                            comboBox1.Items.Add(Convert.ToInt32(reader1["orderid"]));
-                        }
-                    }
-                    reader1.Close();
-
-                    // driver
-                    SqlCommand employeeDriverCommand = new SqlCommand("Select employeeDriverID, employeeDriverFIO from EmployeeDriver", conn);
-
-                    reader1 = employeeDriverCommand.ExecuteReader();
-                    List<Categories> lstCategories1 = new List<Categories>();
-
-                    while (reader1.Read())
-                    {
-                        lstCategories1.Add(new Categories(Convert.ToInt32(reader1["employeeDriverID"]), reader1["employeeDriverFIO"].ToString()));
-                    }
-
-
-                    comboBox2.DataSource = lstCategories1;
-                    comboBox2.DisplayMember = "name";
-                    comboBox2.ValueMember = "id";
-                    comboBox2.Text = "";
-
-                    reader1.Close();
-
-                    // transport
-                    SqlCommand transportCommand = new SqlCommand("Select transportID, transport from Transport", conn);
-
-                    reader1 = transportCommand.ExecuteReader();
-                    lstCategories1 = new List<Categories>();
-
-                    while (reader1.Read())
-                    {
-                        lstCategories1.Add(new Categories(Convert.ToInt32(reader1["transportID"]), reader1["transport"].ToString()));
-                    }
-
-                    comboBox3.DataSource = lstCategories1;
-                    comboBox3.DisplayMember = "name";
-                    comboBox3.ValueMember = "id";
-                    comboBox3.Text = "";
-
-                    reader1.Close();
-
-                    // container
-                    SqlCommand containerCommand = new SqlCommand("Select containerID, containerType from Container", conn);
-
-                    reader1 = containerCommand.ExecuteReader();
-                    lstCategories1 = new List<Categories>();
-
-                    while (reader1.Read())
-                    {
-                        lstCategories1.Add(new Categories(Convert.ToInt32(reader1["containerID"]), reader1["containerType"].ToString()));
-                    }
-
-                    comboBox4.DataSource = lstCategories1;
-                    comboBox4.DisplayMember = "name";
-                    comboBox4.ValueMember = "id";
-                    comboBox4.Text = "";
-
-                }
-
-            }
-            else if (boxItem == "Orders")
-            {
-                label1.Text = "orderid";
-                label2.Text = "employeeid";
-                label3.Text = "customerid";
-                label4.Text = "goodid";
-                label5.Text = "orderamount";
-
-                label1.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
-
-                textBox1.Visible = true;
-                textBox4.Visible = true;
-
-                comboBox1.Visible = true;
-                comboBox2.Visible = true;
-                comboBox3.Visible = true;
-
-
-                // employee
-                using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.connectionString))
-                {
-                    conn.Open();
-                    SqlCommand employeeCommand = new SqlCommand("Select userID, userFIO from Users where roles in (1,5,8,9)", conn);
-
-                    SqlDataReader reader1 = employeeCommand.ExecuteReader();
-
-                    List<Categories> lstCategories1 = new List<Categories>();
-
-                    while (reader1.Read())
-                    {
-                        lstCategories1.Add(new Categories(Convert.ToInt32(reader1["userID"]), reader1["userFIO"].ToString()));
-                    }
-
-                    comboBox1.DataSource = lstCategories1;
-                    comboBox1.DisplayMember = "name";
-                    comboBox1.ValueMember = "id";
-                    comboBox1.Text = "";
-
-                    reader1.Close();
-
-
-                    // customer
-                    SqlCommand customerCommand = new SqlCommand("Select userID, userFIO from Users where roles in (2,3,4,6,7,10)", conn);
-
-                    reader1 = customerCommand.ExecuteReader();
-                    lstCategories1 = new List<Categories>();
-
-                    while (reader1.Read())
-                    {
-                        lstCategories1.Add(new Categories(Convert.ToInt32(reader1["userID"]), reader1["userFIO"].ToString()));
-                    }
-
-                    comboBox2.DataSource = lstCategories1;
-                    comboBox2.DisplayMember = "name";
-                    comboBox2.ValueMember = "id";
-                    comboBox2.Text = "";
-
-                    reader1.Close();
-
-
-                    // good
-                    SqlCommand goodCommand = new SqlCommand("Select goodID, goodModel from Goods", conn);
-
-                    reader1 = goodCommand.ExecuteReader();
-                    lstCategories1 = new List<Categories>();
-
-                    while (reader1.Read())
-                    {
-                        lstCategories1.Add(new Categories(Convert.ToInt32(reader1["goodID"]), reader1["goodModel"].ToString()));
-                    }
-
-                    comboBox3.DataSource = lstCategories1;
-                    comboBox3.DisplayMember = "name";
-                    comboBox3.ValueMember = "id";
-                    comboBox3.Text = "";
-
-                    reader1.Close();
-                }
-            }
-            else if (boxItem == "Roles")
-            {
-                label1.Text = "RolesID";
-                label2.Text = "RolesName";
-
-                label1.Visible = true;
-                label3.Visible = true;
-
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-            }
-            else if (boxItem == "Transport")
-            {
-                label1.Text = "transportID";
-                label2.Text = "typeDeliveryID";
-                label3.Text = "transport";
-
-                label1.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-
-                comboBox1.Visible = true;
-
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-
-                // type
-                using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.connectionString))
-                {
-                    conn.Open();
-                    SqlCommand typeCommand = new SqlCommand("Select typeDeliveryID, typeDeliveryVehicle from Typeofdelivery", conn);
-
-                    SqlDataReader reader1 = typeCommand.ExecuteReader();
-
-                    List<Categories> lstCategories1 = new List<Categories>();
-
-                    while (reader1.Read())
-                    {
-                        lstCategories1.Add(new Categories(Convert.ToInt32(reader1["typeDeliveryID"]), reader1["typeDeliveryVehicle"].ToString()));
-                    }
-
-                    comboBox1.DataSource = lstCategories1;
-                    comboBox1.DisplayMember = "name";
-                    comboBox1.ValueMember = "id";
-                    comboBox1.Text = "";
-
-                    reader1.Close();
-                }
-            }
-
-            else if (boxItem == "TypeGoods")
-            {
-                label1.Text = "typeGoodsID";
-                label3.Text = "typeGood";
-
-                label1.Visible = true;
-                label3.Visible = true;
-
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-            }
-            else if (boxItem == "Typeofdelivery")
-            {
-                label1.Text = "typeDeliveryID";
-                label3.Text = "typeDeliveryVehicle";
-
-                label1.Visible = true;
-                label3.Visible = true;
-
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-            }
-            else if (boxItem == "Users")
-            {
-                label1.Text = "userID";
-                label2.Text = "userFIO";
-                label3.Text = "roles";
-                label4.Text = "loginRoles";
-                label5.Text = "passwordRoles";
-
-                label1.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
-
-                textBox1.Visible = true;
-                textBox7.Visible = true;
-                textBox3.Visible = true;
-                textBox4.Visible = true;
-
-                comboBox2.Visible = true;
-
-                // roles
-                using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.connectionString))
-                {
-                    conn.Open();
-                    SqlCommand rolesCommand = new SqlCommand("Select RolesID, RolesName from Roles", conn);
-
-                    SqlDataReader reader1 = rolesCommand.ExecuteReader();
-
-                    List<Categories> lstCategories1 = new List<Categories>();
-
-                    while (reader1.Read())
-                    {
-                        lstCategories1.Add(new Categories(Convert.ToInt32(reader1["RolesID"]), reader1["RolesName"].ToString()));
-                    }
-
-                    comboBox2.DataSource = lstCategories1;
-                    comboBox2.DisplayMember = "name";
-                    comboBox2.ValueMember = "id";
-                    comboBox2.Text = "";
-
-                    reader1.Close();
-                }
-
-            }
-            else if (boxItem == "Warehouses")
-            {
-                label1.Text = "warehouseID";
-                label3.Text = "warehouseAdres";
-
-                label1.Visible = true;
-                label3.Visible = true;
-
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-            }
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {

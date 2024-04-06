@@ -28,31 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btBackClients = new System.Windows.Forms.Button();
-            this.btAddClients = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tbClientsAdress_c = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -60,8 +38,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbClientsNane_c = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btBackOrders = new System.Windows.Forms.Button();
-            this.btAddOrsers = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.dtpOrdersDate_complete = new System.Windows.Forms.DateTimePicker();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -73,8 +49,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbOrdersId_maser = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btBackS_t_o = new System.Windows.Forms.Button();
-            this.btAddS_t_o = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.cbS_t_oId_s = new System.Windows.Forms.ComboBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -86,9 +60,11 @@
             this.tbServicesName_s = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.chbUsersListed = new System.Windows.Forms.CheckBox();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.tbUsersPw = new System.Windows.Forms.TextBox();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.cbUsersRole_u = new System.Windows.Forms.ComboBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.tbUsersSurname_u = new System.Windows.Forms.TextBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
@@ -96,16 +72,10 @@
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.tbUsersName_u = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.cbUsersRole_u = new System.Windows.Forms.ComboBox();
-            this.chbUsersListed = new System.Windows.Forms.CheckBox();
-            this.btBackServices = new System.Windows.Forms.Button();
-            this.btAddServices = new System.Windows.Forms.Button();
-            this.btBackUsers = new System.Windows.Forms.Button();
-            this.btAddUsers = new System.Windows.Forms.Button();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.tbRolesName_r = new System.Windows.Forms.TextBox();
-            this.btBackRoles = new System.Windows.Forms.Button();
-            this.btAddRoles = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -134,188 +104,6 @@
             this.groupBox19.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(14, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Visible = false;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(14, 88);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Visible = false;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(120, 88);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.Visible = false;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(118, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(102, 21);
-            this.comboBox1.TabIndex = 3;
-            this.comboBox1.Visible = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(78, 216);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "goodID";
-            this.label1.Visible = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(115, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "firmGoodID";
-            this.label2.Visible = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 62);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "typeDeliveryID";
-            this.label3.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(115, 62);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "goodModel";
-            this.label4.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 114);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "goodAmount";
-            this.label5.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(117, 119);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "goodSize";
-            this.label6.Visible = false;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(14, 141);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 12;
-            this.textBox4.Visible = false;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(120, 141);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 13;
-            this.textBox5.Visible = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(65, 174);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "warehouseID";
-            this.label7.Visible = false;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(68, 190);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 15;
-            this.textBox6.Visible = false;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(78, 245);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "Назад";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(14, 87);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(100, 21);
-            this.comboBox2.TabIndex = 17;
-            this.comboBox2.Visible = false;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(120, 87);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(100, 21);
-            this.comboBox3.TabIndex = 18;
-            this.comboBox3.Visible = false;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(14, 140);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(100, 21);
-            this.comboBox4.TabIndex = 19;
-            this.comboBox4.Visible = false;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(120, 30);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 20;
-            this.textBox7.Visible = false;
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -324,16 +112,14 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Location = new System.Drawing.Point(274, 0);
+            this.tabControl1.Location = new System.Drawing.Point(2, -1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(396, 296);
+            this.tabControl1.Size = new System.Drawing.Size(396, 204);
             this.tabControl1.TabIndex = 21;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.btBackClients);
-            this.tabPage1.Controls.Add(this.btAddClients);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -344,24 +130,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Клиннты";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // btBackClients
-            // 
-            this.btBackClients.Location = new System.Drawing.Point(279, 238);
-            this.btBackClients.Name = "btBackClients";
-            this.btBackClients.Size = new System.Drawing.Size(75, 23);
-            this.btBackClients.TabIndex = 4;
-            this.btBackClients.Text = "Назад";
-            this.btBackClients.UseVisualStyleBackColor = true;
-            // 
-            // btAddClients
-            // 
-            this.btAddClients.Location = new System.Drawing.Point(21, 238);
-            this.btAddClients.Name = "btAddClients";
-            this.btAddClients.Size = new System.Drawing.Size(75, 23);
-            this.btAddClients.TabIndex = 3;
-            this.btAddClients.Text = "Добавить";
-            this.btAddClients.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -416,8 +184,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.btBackOrders);
-            this.tabPage2.Controls.Add(this.btAddOrsers);
             this.tabPage2.Controls.Add(this.groupBox8);
             this.tabPage2.Controls.Add(this.groupBox7);
             this.tabPage2.Controls.Add(this.groupBox6);
@@ -426,28 +192,10 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(388, 270);
+            this.tabPage2.Size = new System.Drawing.Size(388, 171);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Заказы";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btBackOrders
-            // 
-            this.btBackOrders.Location = new System.Drawing.Point(279, 238);
-            this.btBackOrders.Name = "btBackOrders";
-            this.btBackOrders.Size = new System.Drawing.Size(75, 23);
-            this.btBackOrders.TabIndex = 6;
-            this.btBackOrders.Text = "Назад";
-            this.btBackOrders.UseVisualStyleBackColor = true;
-            // 
-            // btAddOrsers
-            // 
-            this.btAddOrsers.Location = new System.Drawing.Point(21, 238);
-            this.btAddOrsers.Name = "btAddOrsers";
-            this.btAddOrsers.Size = new System.Drawing.Size(75, 23);
-            this.btAddOrsers.TabIndex = 5;
-            this.btAddOrsers.Text = "Добавить";
-            this.btAddOrsers.UseVisualStyleBackColor = true;
             // 
             // groupBox8
             // 
@@ -541,8 +289,6 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.btBackS_t_o);
-            this.tabPage3.Controls.Add(this.btAddS_t_o);
             this.tabPage3.Controls.Add(this.groupBox9);
             this.tabPage3.Controls.Add(this.groupBox10);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -552,24 +298,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Услуги к заказам";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // btBackS_t_o
-            // 
-            this.btBackS_t_o.Location = new System.Drawing.Point(279, 238);
-            this.btBackS_t_o.Name = "btBackS_t_o";
-            this.btBackS_t_o.Size = new System.Drawing.Size(75, 23);
-            this.btBackS_t_o.TabIndex = 6;
-            this.btBackS_t_o.Text = "Назад";
-            this.btBackS_t_o.UseVisualStyleBackColor = true;
-            // 
-            // btAddS_t_o
-            // 
-            this.btAddS_t_o.Location = new System.Drawing.Point(21, 238);
-            this.btAddS_t_o.Name = "btAddS_t_o";
-            this.btAddS_t_o.Size = new System.Drawing.Size(75, 23);
-            this.btAddS_t_o.TabIndex = 5;
-            this.btAddS_t_o.Text = "Добавить";
-            this.btAddS_t_o.UseVisualStyleBackColor = true;
             // 
             // groupBox9
             // 
@@ -609,8 +337,6 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.btBackServices);
-            this.tabPage4.Controls.Add(this.btAddServices);
             this.tabPage4.Controls.Add(this.groupBox11);
             this.tabPage4.Controls.Add(this.groupBox12);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -657,8 +383,6 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.btBackUsers);
-            this.tabPage5.Controls.Add(this.btAddUsers);
             this.tabPage5.Controls.Add(this.groupBox17);
             this.tabPage5.Controls.Add(this.groupBox15);
             this.tabPage5.Controls.Add(this.groupBox18);
@@ -668,7 +392,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(388, 270);
+            this.tabPage5.Size = new System.Drawing.Size(388, 178);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Пользователи";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -682,6 +406,16 @@
             this.groupBox17.TabIndex = 9;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "Состояние";
+            // 
+            // chbUsersListed
+            // 
+            this.chbUsersListed.AutoSize = true;
+            this.chbUsersListed.Location = new System.Drawing.Point(9, 17);
+            this.chbUsersListed.Name = "chbUsersListed";
+            this.chbUsersListed.Size = new System.Drawing.Size(75, 17);
+            this.chbUsersListed.TabIndex = 0;
+            this.chbUsersListed.Text = "Числится";
+            this.chbUsersListed.UseVisualStyleBackColor = true;
             // 
             // groupBox15
             // 
@@ -709,6 +443,14 @@
             this.groupBox18.TabIndex = 8;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "Роль";
+            // 
+            // cbUsersRole_u
+            // 
+            this.cbUsersRole_u.FormattingEnabled = true;
+            this.cbUsersRole_u.Location = new System.Drawing.Point(6, 16);
+            this.cbUsersRole_u.Name = "cbUsersRole_u";
+            this.cbUsersRole_u.Size = new System.Drawing.Size(137, 21);
+            this.cbUsersRole_u.TabIndex = 0;
             // 
             // groupBox13
             // 
@@ -763,8 +505,6 @@
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.btBackRoles);
-            this.tabPage6.Controls.Add(this.btAddRoles);
             this.tabPage6.Controls.Add(this.groupBox19);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
@@ -773,60 +513,6 @@
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Роли";
             this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // cbUsersRole_u
-            // 
-            this.cbUsersRole_u.FormattingEnabled = true;
-            this.cbUsersRole_u.Location = new System.Drawing.Point(6, 16);
-            this.cbUsersRole_u.Name = "cbUsersRole_u";
-            this.cbUsersRole_u.Size = new System.Drawing.Size(137, 21);
-            this.cbUsersRole_u.TabIndex = 0;
-            // 
-            // chbUsersListed
-            // 
-            this.chbUsersListed.AutoSize = true;
-            this.chbUsersListed.Location = new System.Drawing.Point(9, 17);
-            this.chbUsersListed.Name = "chbUsersListed";
-            this.chbUsersListed.Size = new System.Drawing.Size(75, 17);
-            this.chbUsersListed.TabIndex = 0;
-            this.chbUsersListed.Text = "Числится";
-            this.chbUsersListed.UseVisualStyleBackColor = true;
-            // 
-            // btBackServices
-            // 
-            this.btBackServices.Location = new System.Drawing.Point(279, 238);
-            this.btBackServices.Name = "btBackServices";
-            this.btBackServices.Size = new System.Drawing.Size(75, 23);
-            this.btBackServices.TabIndex = 8;
-            this.btBackServices.Text = "Назад";
-            this.btBackServices.UseVisualStyleBackColor = true;
-            // 
-            // btAddServices
-            // 
-            this.btAddServices.Location = new System.Drawing.Point(21, 238);
-            this.btAddServices.Name = "btAddServices";
-            this.btAddServices.Size = new System.Drawing.Size(75, 23);
-            this.btAddServices.TabIndex = 7;
-            this.btAddServices.Text = "Добавить";
-            this.btAddServices.UseVisualStyleBackColor = true;
-            // 
-            // btBackUsers
-            // 
-            this.btBackUsers.Location = new System.Drawing.Point(279, 238);
-            this.btBackUsers.Name = "btBackUsers";
-            this.btBackUsers.Size = new System.Drawing.Size(75, 23);
-            this.btBackUsers.TabIndex = 11;
-            this.btBackUsers.Text = "Назад";
-            this.btBackUsers.UseVisualStyleBackColor = true;
-            // 
-            // btAddUsers
-            // 
-            this.btAddUsers.Location = new System.Drawing.Point(21, 238);
-            this.btAddUsers.Name = "btAddUsers";
-            this.btAddUsers.Size = new System.Drawing.Size(75, 23);
-            this.btAddUsers.TabIndex = 10;
-            this.btAddUsers.Text = "Добавить";
-            this.btAddUsers.UseVisualStyleBackColor = true;
             // 
             // groupBox19
             // 
@@ -845,50 +531,34 @@
             this.tbRolesName_r.Size = new System.Drawing.Size(137, 20);
             this.tbRolesName_r.TabIndex = 0;
             // 
-            // btBackRoles
+            // button1
             // 
-            this.btBackRoles.Location = new System.Drawing.Point(279, 238);
-            this.btBackRoles.Name = "btBackRoles";
-            this.btBackRoles.Size = new System.Drawing.Size(75, 23);
-            this.btBackRoles.TabIndex = 8;
-            this.btBackRoles.Text = "Назад";
-            this.btBackRoles.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(12, 209);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Добавить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btAddRoles
+            // button2
             // 
-            this.btAddRoles.Location = new System.Drawing.Point(21, 238);
-            this.btAddRoles.Name = "btAddRoles";
-            this.btAddRoles.Size = new System.Drawing.Size(75, 23);
-            this.btAddRoles.TabIndex = 7;
-            this.btAddRoles.Text = "Добавить";
-            this.btAddRoles.UseVisualStyleBackColor = true;
+            this.button2.Location = new System.Drawing.Point(313, 209);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "Назад";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 296);
+            this.ClientSize = new System.Drawing.Size(400, 240);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Name = "Form3";
             this.Text = "Form3";
             this.Load += new System.EventHandler(this.Form3_Load);
@@ -931,33 +601,11 @@
             this.groupBox19.ResumeLayout(false);
             this.groupBox19.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -967,8 +615,6 @@
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox tbClientsNane_c;
-        private System.Windows.Forms.Button btBackClients;
-        private System.Windows.Forms.Button btAddClients;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox tbClientsAdress_c;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -982,14 +628,10 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label lbOrdersPrice;
-        private System.Windows.Forms.Button btBackOrders;
-        private System.Windows.Forms.Button btAddOrsers;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.ComboBox cbS_t_oId_s;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.ComboBox cbS_t_oId_o;
-        private System.Windows.Forms.Button btBackS_t_o;
-        private System.Windows.Forms.Button btAddS_t_o;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.TextBox tbServicesCost_s;
         private System.Windows.Forms.GroupBox groupBox12;
@@ -1006,14 +648,10 @@
         private System.Windows.Forms.GroupBox groupBox18;
         private System.Windows.Forms.CheckBox chbUsersListed;
         private System.Windows.Forms.ComboBox cbUsersRole_u;
-        private System.Windows.Forms.Button btBackServices;
-        private System.Windows.Forms.Button btAddServices;
-        private System.Windows.Forms.Button btBackUsers;
-        private System.Windows.Forms.Button btAddUsers;
-        private System.Windows.Forms.Button btBackRoles;
-        private System.Windows.Forms.Button btAddRoles;
         private System.Windows.Forms.GroupBox groupBox19;
         private System.Windows.Forms.TextBox tbRolesName_r;
         private System.Windows.Forms.DateTimePicker dtpOrdersDate_order;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

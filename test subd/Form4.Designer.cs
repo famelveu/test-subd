@@ -30,8 +30,6 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btBackClients = new System.Windows.Forms.Button();
-            this.btChClients = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tbClientsAdress_c = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -39,8 +37,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbClientsNane_c = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btBackOrders = new System.Windows.Forms.Button();
-            this.btChOrsers = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.dtpOrdersDate_complete = new System.Windows.Forms.DateTimePicker();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -52,22 +48,16 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbOrdersId_maser = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btBackS_t_o = new System.Windows.Forms.Button();
-            this.btChS_t_o = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.cbS_t_oId_s = new System.Windows.Forms.ComboBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.cbS_t_oId_o = new System.Windows.Forms.ComboBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btBackServices = new System.Windows.Forms.Button();
-            this.btChServices = new System.Windows.Forms.Button();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.tbServicesCost_s = new System.Windows.Forms.TextBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.tbServicesName_s = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btBackUsers = new System.Windows.Forms.Button();
-            this.btChUsers = new System.Windows.Forms.Button();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.chbUsersListed = new System.Windows.Forms.CheckBox();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
@@ -81,10 +71,10 @@
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.tbUsersName_u = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.btBackRoles = new System.Windows.Forms.Button();
-            this.btChRoles = new System.Windows.Forms.Button();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.tbRolesName_r = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -121,44 +111,24 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Location = new System.Drawing.Point(3, 0);
+            this.tabControl1.Location = new System.Drawing.Point(2, -1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(396, 296);
-            this.tabControl1.TabIndex = 22;
+            this.tabControl1.Size = new System.Drawing.Size(396, 204);
+            this.tabControl1.TabIndex = 24;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.btBackClients);
-            this.tabPage1.Controls.Add(this.btChClients);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(388, 270);
+            this.tabPage1.Size = new System.Drawing.Size(388, 178);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Клиннты";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // btBackClients
-            // 
-            this.btBackClients.Location = new System.Drawing.Point(279, 238);
-            this.btBackClients.Name = "btBackClients";
-            this.btBackClients.Size = new System.Drawing.Size(75, 23);
-            this.btBackClients.TabIndex = 4;
-            this.btBackClients.Text = "Назад";
-            this.btBackClients.UseVisualStyleBackColor = true;
-            // 
-            // btChClients
-            // 
-            this.btChClients.Location = new System.Drawing.Point(21, 238);
-            this.btChClients.Name = "btChClients";
-            this.btChClients.Size = new System.Drawing.Size(75, 23);
-            this.btChClients.TabIndex = 3;
-            this.btChClients.Text = "Изменить";
-            this.btChClients.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -213,8 +183,6 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.btBackOrders);
-            this.tabPage2.Controls.Add(this.btChOrsers);
             this.tabPage2.Controls.Add(this.groupBox8);
             this.tabPage2.Controls.Add(this.groupBox7);
             this.tabPage2.Controls.Add(this.groupBox6);
@@ -223,28 +191,10 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(388, 270);
+            this.tabPage2.Size = new System.Drawing.Size(388, 178);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Заказы";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btBackOrders
-            // 
-            this.btBackOrders.Location = new System.Drawing.Point(279, 238);
-            this.btBackOrders.Name = "btBackOrders";
-            this.btBackOrders.Size = new System.Drawing.Size(75, 23);
-            this.btBackOrders.TabIndex = 6;
-            this.btBackOrders.Text = "Назад";
-            this.btBackOrders.UseVisualStyleBackColor = true;
-            // 
-            // btChOrsers
-            // 
-            this.btChOrsers.Location = new System.Drawing.Point(21, 238);
-            this.btChOrsers.Name = "btChOrsers";
-            this.btChOrsers.Size = new System.Drawing.Size(75, 23);
-            this.btChOrsers.TabIndex = 5;
-            this.btChOrsers.Text = "Изменить";
-            this.btChOrsers.UseVisualStyleBackColor = true;
             // 
             // groupBox8
             // 
@@ -337,35 +287,15 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.btBackS_t_o);
-            this.tabPage3.Controls.Add(this.btChS_t_o);
             this.tabPage3.Controls.Add(this.groupBox9);
             this.tabPage3.Controls.Add(this.groupBox10);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(388, 270);
+            this.tabPage3.Size = new System.Drawing.Size(388, 178);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Услуги к заказам";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // btBackS_t_o
-            // 
-            this.btBackS_t_o.Location = new System.Drawing.Point(279, 238);
-            this.btBackS_t_o.Name = "btBackS_t_o";
-            this.btBackS_t_o.Size = new System.Drawing.Size(75, 23);
-            this.btBackS_t_o.TabIndex = 6;
-            this.btBackS_t_o.Text = "Назад";
-            this.btBackS_t_o.UseVisualStyleBackColor = true;
-            // 
-            // btChS_t_o
-            // 
-            this.btChS_t_o.Location = new System.Drawing.Point(21, 238);
-            this.btChS_t_o.Name = "btChS_t_o";
-            this.btChS_t_o.Size = new System.Drawing.Size(75, 23);
-            this.btChS_t_o.TabIndex = 5;
-            this.btChS_t_o.Text = "Изменить";
-            this.btChS_t_o.UseVisualStyleBackColor = true;
             // 
             // groupBox9
             // 
@@ -405,35 +335,15 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.btBackServices);
-            this.tabPage4.Controls.Add(this.btChServices);
             this.tabPage4.Controls.Add(this.groupBox11);
             this.tabPage4.Controls.Add(this.groupBox12);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(388, 270);
+            this.tabPage4.Size = new System.Drawing.Size(388, 178);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Услуги";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // btBackServices
-            // 
-            this.btBackServices.Location = new System.Drawing.Point(279, 238);
-            this.btBackServices.Name = "btBackServices";
-            this.btBackServices.Size = new System.Drawing.Size(75, 23);
-            this.btBackServices.TabIndex = 8;
-            this.btBackServices.Text = "Назад";
-            this.btBackServices.UseVisualStyleBackColor = true;
-            // 
-            // btChServices
-            // 
-            this.btChServices.Location = new System.Drawing.Point(21, 238);
-            this.btChServices.Name = "btChServices";
-            this.btChServices.Size = new System.Drawing.Size(75, 23);
-            this.btChServices.TabIndex = 7;
-            this.btChServices.Text = "Изменить";
-            this.btChServices.UseVisualStyleBackColor = true;
             // 
             // groupBox11
             // 
@@ -471,8 +381,6 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.btBackUsers);
-            this.tabPage5.Controls.Add(this.btChUsers);
             this.tabPage5.Controls.Add(this.groupBox17);
             this.tabPage5.Controls.Add(this.groupBox15);
             this.tabPage5.Controls.Add(this.groupBox18);
@@ -482,28 +390,10 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(388, 270);
+            this.tabPage5.Size = new System.Drawing.Size(388, 178);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Пользователи";
             this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // btBackUsers
-            // 
-            this.btBackUsers.Location = new System.Drawing.Point(279, 238);
-            this.btBackUsers.Name = "btBackUsers";
-            this.btBackUsers.Size = new System.Drawing.Size(75, 23);
-            this.btBackUsers.TabIndex = 11;
-            this.btBackUsers.Text = "Назад";
-            this.btBackUsers.UseVisualStyleBackColor = true;
-            // 
-            // btChUsers
-            // 
-            this.btChUsers.Location = new System.Drawing.Point(21, 238);
-            this.btChUsers.Name = "btChUsers";
-            this.btChUsers.Size = new System.Drawing.Size(75, 23);
-            this.btChUsers.TabIndex = 10;
-            this.btChUsers.Text = "Изменить";
-            this.btChUsers.UseVisualStyleBackColor = true;
             // 
             // groupBox17
             // 
@@ -613,34 +503,14 @@
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.btBackRoles);
-            this.tabPage6.Controls.Add(this.btChRoles);
             this.tabPage6.Controls.Add(this.groupBox19);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(388, 270);
+            this.tabPage6.Size = new System.Drawing.Size(388, 178);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Роли";
             this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // btBackRoles
-            // 
-            this.btBackRoles.Location = new System.Drawing.Point(279, 238);
-            this.btBackRoles.Name = "btBackRoles";
-            this.btBackRoles.Size = new System.Drawing.Size(75, 23);
-            this.btBackRoles.TabIndex = 8;
-            this.btBackRoles.Text = "Назад";
-            this.btBackRoles.UseVisualStyleBackColor = true;
-            // 
-            // btChRoles
-            // 
-            this.btChRoles.Location = new System.Drawing.Point(21, 238);
-            this.btChRoles.Name = "btChRoles";
-            this.btChRoles.Size = new System.Drawing.Size(75, 23);
-            this.btChRoles.TabIndex = 7;
-            this.btChRoles.Text = "Изменить";
-            this.btChRoles.UseVisualStyleBackColor = true;
             // 
             // groupBox19
             // 
@@ -659,14 +529,35 @@
             this.tbRolesName_r.Size = new System.Drawing.Size(137, 20);
             this.tbRolesName_r.TabIndex = 0;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(313, 209);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 23;
+            this.button2.Text = "Назад";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 209);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Изменить";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 296);
+            this.ClientSize = new System.Drawing.Size(400, 240);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Name = "Form4";
             this.Text = "Form4";
+            this.Load += new System.EventHandler(this.Form4_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -713,8 +604,6 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button btBackClients;
-        private System.Windows.Forms.Button btChClients;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox tbClientsAdress_c;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -722,8 +611,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox tbClientsNane_c;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button btBackOrders;
-        private System.Windows.Forms.Button btChOrsers;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.DateTimePicker dtpOrdersDate_complete;
         private System.Windows.Forms.GroupBox groupBox7;
@@ -735,22 +622,16 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox cbOrdersId_maser;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button btBackS_t_o;
-        private System.Windows.Forms.Button btChS_t_o;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.ComboBox cbS_t_oId_s;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.ComboBox cbS_t_oId_o;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button btBackServices;
-        private System.Windows.Forms.Button btChServices;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.TextBox tbServicesCost_s;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.TextBox tbServicesName_s;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Button btBackUsers;
-        private System.Windows.Forms.Button btChUsers;
         private System.Windows.Forms.GroupBox groupBox17;
         private System.Windows.Forms.CheckBox chbUsersListed;
         private System.Windows.Forms.GroupBox groupBox15;
@@ -764,9 +645,9 @@
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.TextBox tbUsersName_u;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.Button btBackRoles;
-        private System.Windows.Forms.Button btChRoles;
         private System.Windows.Forms.GroupBox groupBox19;
         private System.Windows.Forms.TextBox tbRolesName_r;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }

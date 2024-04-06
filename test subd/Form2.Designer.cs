@@ -32,15 +32,15 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.addString = new System.Windows.Forms.Button();
-            this.delString = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btAddString = new System.Windows.Forms.Button();
+            this.btDelString = new System.Windows.Forms.Button();
+            this.btEditString = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbColumn = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbDataSearch = new System.Windows.Forms.TextBox();
-            this.cbColumn = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -92,39 +92,39 @@
             this.comboBox1.Text = "Клиенты";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // addString
+            // btAddString
             // 
-            this.addString.Location = new System.Drawing.Point(10, 28);
-            this.addString.Name = "addString";
-            this.addString.Size = new System.Drawing.Size(80, 23);
-            this.addString.TabIndex = 9;
-            this.addString.Text = "Добавить";
-            this.addString.UseVisualStyleBackColor = true;
-            this.addString.Click += new System.EventHandler(this.addString_Click);
+            this.btAddString.Location = new System.Drawing.Point(10, 28);
+            this.btAddString.Name = "btAddString";
+            this.btAddString.Size = new System.Drawing.Size(80, 23);
+            this.btAddString.TabIndex = 9;
+            this.btAddString.Text = "Добавить";
+            this.btAddString.UseVisualStyleBackColor = true;
+            this.btAddString.Click += new System.EventHandler(this.addString_Click);
             // 
-            // delString
+            // btDelString
             // 
-            this.delString.Location = new System.Drawing.Point(200, 28);
-            this.delString.Name = "delString";
-            this.delString.Size = new System.Drawing.Size(80, 23);
-            this.delString.TabIndex = 10;
-            this.delString.Text = "Удалить";
-            this.delString.UseVisualStyleBackColor = true;
+            this.btDelString.Location = new System.Drawing.Point(200, 28);
+            this.btDelString.Name = "btDelString";
+            this.btDelString.Size = new System.Drawing.Size(80, 23);
+            this.btDelString.TabIndex = 10;
+            this.btDelString.Text = "Удалить";
+            this.btDelString.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btEditString
             // 
-            this.button2.Location = new System.Drawing.Point(105, 28);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 23);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Изменить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btEditString.Location = new System.Drawing.Point(105, 28);
+            this.btEditString.Name = "btEditString";
+            this.btEditString.Size = new System.Drawing.Size(80, 23);
+            this.btEditString.TabIndex = 17;
+            this.btEditString.Text = "Изменить";
+            this.btEditString.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.addString);
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.delString);
+            this.groupBox3.Controls.Add(this.btAddString);
+            this.groupBox3.Controls.Add(this.btEditString);
+            this.groupBox3.Controls.Add(this.btDelString);
             this.groupBox3.Location = new System.Drawing.Point(468, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(290, 73);
@@ -152,6 +152,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Столбец";
             // 
+            // cbColumn
+            // 
+            this.cbColumn.FormattingEnabled = true;
+            this.cbColumn.Location = new System.Drawing.Point(7, 18);
+            this.cbColumn.Name = "cbColumn";
+            this.cbColumn.Size = new System.Drawing.Size(117, 21);
+            this.cbColumn.TabIndex = 0;
+            this.cbColumn.SelectedIndexChanged += new System.EventHandler(this.cbColumn_SelectedIndexChanged);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tbDataSearch);
@@ -169,15 +178,6 @@
             this.tbDataSearch.Size = new System.Drawing.Size(117, 20);
             this.tbDataSearch.TabIndex = 0;
             this.tbDataSearch.TextChanged += new System.EventHandler(this.tbDataSeatch_TextChanged);
-            // 
-            // cbColumn
-            // 
-            this.cbColumn.FormattingEnabled = true;
-            this.cbColumn.Location = new System.Drawing.Point(7, 18);
-            this.cbColumn.Name = "cbColumn";
-            this.cbColumn.Size = new System.Drawing.Size(117, 21);
-            this.cbColumn.TabIndex = 0;
-            this.cbColumn.SelectedIndexChanged += new System.EventHandler(this.cbColumn_SelectedIndexChanged);
             // 
             // groupBox5
             // 
@@ -221,10 +221,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button delString;
-        private System.Windows.Forms.Button addString;
+        private System.Windows.Forms.Button btDelString;
+        private System.Windows.Forms.Button btAddString;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btEditString;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cbColumn;
