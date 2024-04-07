@@ -42,6 +42,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbDataSearch = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -110,6 +111,7 @@
             this.btDelString.TabIndex = 10;
             this.btDelString.Text = "Удалить";
             this.btDelString.UseVisualStyleBackColor = true;
+            this.btDelString.Click += new System.EventHandler(this.btDelString_Click);
             // 
             // btEditString
             // 
@@ -119,9 +121,11 @@
             this.btEditString.TabIndex = 17;
             this.btEditString.Text = "Изменить";
             this.btEditString.UseVisualStyleBackColor = true;
+            this.btEditString.Click += new System.EventHandler(this.btEditString_Click);
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.btAddString);
             this.groupBox3.Controls.Add(this.btEditString);
             this.groupBox3.Controls.Add(this.btDelString);
@@ -190,6 +194,15 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Поиск";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(200, 59);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(35, 13);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "label1";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,6 +219,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -231,5 +245,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox tbDataSearch;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label10;
     }
 }

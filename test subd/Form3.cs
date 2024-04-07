@@ -13,18 +13,23 @@ namespace test_subd
         private SqlConnection connect;
         private int selectedTable;
         private int rlu;
+        private bool tfAdd;
 
-        public Form3(SqlConnection cnct, int boxItem, int role)
+        public Form3(SqlConnection cnct, int boxItem, int role, bool typeForm)
         {
             connect = cnct;;
             InitializeComponent();
             rlu = role;
             selectedTable = boxItem;
+            tfAdd = typeForm;
         }
 
         private void Form3_Load(object sender, EventArgs e)
         {
-
+            if(tfAdd == false)
+            {
+                button1.Text = "Изменить";
+            }
             if (rlu != 1)
             { 
                 tabControl1.TabPages[3].Hide();

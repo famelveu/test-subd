@@ -13,6 +13,7 @@ using Microsoft.SqlServer.Server;
 using static System.Windows.Forms.DataFormats;
 using System.Data.Common;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Reflection.Emit;
 
 
 namespace test_subd
@@ -33,7 +34,7 @@ namespace test_subd
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            
+
             if (roleForm != 1)
             {
                 btDelString.Enabled = false;
@@ -127,15 +128,54 @@ namespace test_subd
 
         private void addString_Click(object sender, EventArgs e)
         {
-            int boxItem = comboBox1.SelectedIndex; 
+            int boxItem = comboBox1.SelectedIndex;
+            // Переменная для определеня назначения Form3
+            bool typeform = true;
             this.Hide();
-            Form3 fm = new Form3(connect, boxItem, roleForm);
+            Form3 fm = new Form3(connect, boxItem, roleForm, typeform);
             fm.ShowDialog();
+        }
+
+        private void btEditString_Click(object sender, EventArgs e)
+        {
+            int boxItem = comboBox1.SelectedIndex;
+            // Переменная для определеня назначения Form3
+            bool typeform = false;
+            this.Hide();
+            Form3 fm = new Form3(connect, boxItem, roleForm, typeform);
+            fm.ShowDialog();
+        }
+
+        private void btDelString_Click(object sender, EventArgs e)
+        {
+            // Получаем выбранную строку
+            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+
+            // Формируем текст для подтверждения удаления
+            string confirmationText = $"Вы действительно хотите удалить из таблицы ";
+
+            // Получаем значения всех столбцов выбранной строки и добавляем их к тексту подтверждения
+            for (int i = 0; i < selectedRow.Cells.Count; i++)
+            {
+                confirmationText += $"{selectedRow.Cells[i].Value.ToString()}";
+                if (i < selectedRow.Cells.Count - 1)
+                    confirmationText += " - ";
+            }
+
+            // Показываем окно подтверждения
+            DialogResult result = MessageBox.Show(confirmationText, "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Если пользователь подтвердил удаление, выполняем операцию
+            if (result == DialogResult.Yes)
+            {
+                // Устанавливаем полученное значение в Label
+                label10.Text = selectedRow.Cells[0].Value.ToString();
+            }
         }
 
         private void tbDataSeatch_TextChanged(object sender, EventArgs e)
         {
-            string filterValue = tbDataSearch.Text;
+            /*string filterValue = tbDataSearch.Text;
             if (!string.IsNullOrEmpty(filterValue))
             {
                 if (int.TryParse(filterValue, out int numericValue))
@@ -150,8 +190,38 @@ namespace test_subd
             else
             {
                 (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+            }*/
+
+            string searchText = tbDataSearch.Text;
+
+            // Получаем CurrencyManager, который управляет привязкой данных к DataGridView
+            CurrencyManager currencyManager = (CurrencyManager)BindingContext[dataGridView1.DataSource];
+
+            // Перебираем строки в DataGridView
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                // Проверяем, что строка не является строкой заголовка (Header) и не является строкой, связанной с CurrencyManager
+                if (!row.IsNewRow && row.Index != currencyManager.Position)
+                {
+                    bool rowVisible = false;
+
+                    // Перебираем ячейки в каждой строке
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        // Проверяем содержимое ячейки на соответствие поисковому запросу
+                        if (cell.Value != null && cell.Value.ToString().ToLower().Contains(searchText))
+                        {
+                            rowVisible = true; // Если ячейка соответствует, отмечаем строку как видимую
+                            break; // Прекращаем проверку ячеек текущей строки
+                        }
+                    }
+
+                    // Устанавливаем видимость строки в DataGridView в зависимости от результата поиска
+                    row.Visible = rowVisible;
+                }
             }
         }
+
         private void UpdateComboBoxWithDataGridColumns(System.Windows.Forms.ComboBox comboBox, DataGridView dataGridView)
         {
             // Очистка коллекции элементов ComboBox перед добавлением новых значений
@@ -175,5 +245,7 @@ namespace test_subd
         {
             tbDataSearch.Clear();
         }
+
+
     }
 }
