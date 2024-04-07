@@ -25,8 +25,8 @@ namespace test_subd.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=sc;Data Sour" +
-            "ce=AMDTA4KA\\SQLEXPRESS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=sc_x99;Data " +
+            "Source=AMDTA4KA\\SQLEXPRESS")]
         public string connectionString {
             get {
                 return ((string)(this["connectionString"]));

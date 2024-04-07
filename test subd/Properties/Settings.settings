@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="connectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=sc;Data Source=AMDTA4KA\SQLEXPRESS</Value>
+      <Value Profile="(Default)">Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=sc_x99;Data Source=AMDTA4KA\SQLEXPRESS</Value>
     </Setting>
   </Settings>
 </SettingsFile>

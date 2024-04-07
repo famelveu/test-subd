@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace test_subd
 {
@@ -14,18 +17,23 @@ namespace test_subd
         private int selectedTable;
         private int rlu;
         private bool tfAdd;
+        private int selectedId;
 
-        public Form3(SqlConnection cnct, int boxItem, int role, bool typeForm)
+        public Form3(SqlConnection cnct, int boxItem, int role, bool typeForm, string selID)
         {
             connect = cnct;;
             InitializeComponent();
             rlu = role;
             selectedTable = boxItem;
             tfAdd = typeForm;
+            selectedId = Convert.ToInt32(selID);
         }
 
         private void Form3_Load(object sender, EventArgs e)
         {
+
+            
+
             if(tfAdd == false)
             {
                 button1.Text = "Изменить";
@@ -205,6 +213,7 @@ namespace test_subd
                     tabControl1.TabPages[i].Enabled = false;
                 }
             }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -271,6 +280,110 @@ namespace test_subd
                 logRequest.ExecuteNonQuery();
                 MessageBox.Show("Запись успешно добавлена");
             }*/
+
+            using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.connectionString))
+            {
+                conn.Open();
+                SqlCommand logRequest = new SqlCommand();
+                logRequest.Connection = conn;
+
+                switch (selectedTable)
+                {
+                    case 0:
+                        if (tfAdd == true)
+                        {
+                            logRequest.CommandText = $"INSERT INTO Clients (name_c, tel_num_c, addres_c) " +
+                                $"VALUES ('{tbClientsNane_c.Text}', '{tbClientsTel_num_c.Text}', '{tbClientsAdress_c.Text}')";
+                            MessageBox.Show("Строка добавлена");
+                        }
+
+                        else
+                        {
+                            //logRequest.CommandText = 
+                        }
+
+                        break;
+
+                    case 1:
+                        if (tfAdd == true)
+                        {
+                            int indexOfDot = cbOrdersId_client.Text.IndexOf('.');
+                            string id_master = cbOrdersId_maser.Text.Substring(0, indexOfDot);
+                            string id_client = cbOrdersId_client.Text.Substring(0, indexOfDot);
+
+                            logRequest.CommandText = $"INSERT INTO Orders (id_master, id_client, date_order, date_complete) VALUES ({id_master}, {id_client}, " +
+                                $"'{dtpOrdersDate_order.Value.ToString("yyyy-MM-dd")}', '{dtpOrdersDate_complete.Value.ToString("yyyy-MM-dd")}')";
+                        }
+
+                        else
+                        {
+                            //logRequest.CommandText = 
+                        }
+
+                        break;
+
+                    case 2:
+                        if (tfAdd == true)
+                        {
+                            int indexOfDot_o = cbS_t_oId_o.Text.IndexOf('.');
+                            int indexOfDot_s = cbS_t_oId_s.Text.IndexOf('.');
+                            string id_o = cbS_t_oId_o.Text.Substring(0, indexOfDot_o);
+                            string id_s = cbS_t_oId_s.Text.Substring(0, indexOfDot_s);
+
+                            logRequest.CommandText = $"INSERT INTO Services_to_orders (id_o, id_s) VALUES ({id_o}, {id_s})";
+                        }
+
+                        else
+                        {
+                            //logRequest.CommandText = 
+                        }
+
+                        break;
+
+                    case 3:
+                        if (tfAdd == true)
+                        {
+                            logRequest.CommandText = $"INSERT INTO Services (name_s, cost_s) VALUES ('{tbServicesName_s.Text}', {tbServicesCost_s.Text})";
+                        }
+
+                        else
+                        {
+                            //logRequest.CommandText = 
+                        }
+                        break;
+                    case 4:
+                        if (tfAdd == true)
+                        {
+                            int indexOfDot = cbUsersRole_u.Text.IndexOf('.');
+                            string role_u = cbUsersRole_u.Text.Substring(0, indexOfDot);
+
+                            logRequest.CommandText = $"INSERT INTO Services (role_u, name_u, surname_u, tel_num_u, pw, listed) VALUES ('{role_u}'," +
+                                $" '{tbUsersName_u.Text}', '{tbUsersSurname_u.Text}', '{tbUsersTel_num_u.Text}', '{tbUsersPw.Text}', {(chbUsersListed.Checked ? 1 : 0)})";
+
+                        }
+                        else
+                        {
+                            //logRequest.CommandText =
+                        }
+
+                        break;
+
+                    case 5:
+                        if (tfAdd == true)
+                        {
+                            logRequest.CommandText = $"INSERT INTO Services (name_r) VALUES ('{tbRolesName_r.Text}')";
+                        }
+
+                        else
+                        {
+                            //logRequest.CommandText = 
+                        }
+
+                        break;
+                }
+                logRequest.ExecuteNonQuery();
+                conn.Close();
+            }
         }
 
 

@@ -132,9 +132,11 @@ namespace test_subd
             // Переменная для определеня назначения Form3
             bool typeform = true;
             this.Hide();
-            Form3 fm = new Form3(connect, boxItem, roleForm, typeform);
+            Form3 fm = new Form3(connect, boxItem, roleForm, typeform, "0");
             fm.ShowDialog();
+            connect.Close();
         }
+
 
         private void btEditString_Click(object sender, EventArgs e)
         {
@@ -142,7 +144,9 @@ namespace test_subd
             // Переменная для определеня назначения Form3
             bool typeform = false;
             this.Hide();
-            Form3 fm = new Form3(connect, boxItem, roleForm, typeform);
+            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+            string selID = selectedRow.Cells[0].Value.ToString();
+            Form3 fm = new Form3(connect, boxItem, roleForm, typeform, selID);
             fm.ShowDialog();
         }
 

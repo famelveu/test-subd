@@ -42,8 +42,6 @@
             this.dtpOrdersDate_complete = new System.Windows.Forms.DateTimePicker();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.dtpOrdersDate_order = new System.Windows.Forms.DateTimePicker();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.lbOrdersPrice = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cbOrdersId_client = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -84,7 +82,6 @@
             this.tabPage2.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -126,7 +123,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(388, 270);
+            this.tabPage1.Size = new System.Drawing.Size(388, 178);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Клиннты";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -186,13 +183,12 @@
             // 
             this.tabPage2.Controls.Add(this.groupBox8);
             this.tabPage2.Controls.Add(this.groupBox7);
-            this.tabPage2.Controls.Add(this.groupBox6);
             this.tabPage2.Controls.Add(this.groupBox5);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(388, 171);
+            this.tabPage2.Size = new System.Drawing.Size(388, 178);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Заказы";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -200,7 +196,7 @@
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.dtpOrdersDate_complete);
-            this.groupBox8.Location = new System.Drawing.Point(202, 118);
+            this.groupBox8.Location = new System.Drawing.Point(202, 70);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(152, 42);
             this.groupBox8.TabIndex = 3;
@@ -217,7 +213,7 @@
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.dtpOrdersDate_order);
-            this.groupBox7.Location = new System.Drawing.Point(202, 70);
+            this.groupBox7.Location = new System.Drawing.Point(21, 70);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(152, 42);
             this.groupBox7.TabIndex = 2;
@@ -231,25 +227,6 @@
             this.dtpOrdersDate_order.Size = new System.Drawing.Size(137, 20);
             this.dtpOrdersDate_order.TabIndex = 0;
             this.dtpOrdersDate_order.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.lbOrdersPrice);
-            this.groupBox6.Location = new System.Drawing.Point(21, 70);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(152, 42);
-            this.groupBox6.TabIndex = 1;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Стоимость";
-            // 
-            // lbOrdersPrice
-            // 
-            this.lbOrdersPrice.AutoSize = true;
-            this.lbOrdersPrice.Location = new System.Drawing.Point(7, 20);
-            this.lbOrdersPrice.Name = "lbOrdersPrice";
-            this.lbOrdersPrice.Size = new System.Drawing.Size(13, 13);
-            this.lbOrdersPrice.TabIndex = 0;
-            this.lbOrdersPrice.Text = "0";
             // 
             // groupBox5
             // 
@@ -294,7 +271,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(388, 270);
+            this.tabPage3.Size = new System.Drawing.Size(388, 178);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Услуги к заказам";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -342,7 +319,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(388, 270);
+            this.tabPage4.Size = new System.Drawing.Size(388, 178);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Услуги";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -509,7 +486,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(388, 270);
+            this.tabPage6.Size = new System.Drawing.Size(388, 178);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Роли";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -560,7 +537,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "Form3";
-            this.Text = "Form3";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -573,8 +550,6 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -626,8 +601,6 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.DateTimePicker dtpOrdersDate_complete;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Label lbOrdersPrice;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.ComboBox cbS_t_oId_s;
         private System.Windows.Forms.GroupBox groupBox10;
