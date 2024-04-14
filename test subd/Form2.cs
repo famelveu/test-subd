@@ -56,9 +56,8 @@ namespace test_subd
             // заполняем источник данных полученными из адаптера записями
             adapter.Fill(dataSet);
             dataGridView1.DataSource = dataSet.Tables[0];
-
             UpdateComboBoxWithDataGridColumns(cbColumn, dataGridView1);
-
+            dataGridView1.Columns[0].Visible = false;
             sqlConnect.Close();
         }
 
@@ -95,6 +94,15 @@ namespace test_subd
                 case 5:
                     logRequst.CommandText = $"SELECT * FROM Roles";
                     break;
+            }
+
+            if (comboBox1.SelectedItem != "Заказы")
+            {
+                dataGridView1.Columns[0].Visible = false;
+            }
+            else
+            {
+                dataGridView1.Columns[0].Visible = true;
             }
 
             logRequst.Connection = sqlConnect;
@@ -148,6 +156,7 @@ namespace test_subd
             string selID = selectedRow.Cells[0].Value.ToString();
             Form3 fm = new Form3(connect, boxItem, roleForm, typeform, selID);
             fm.ShowDialog();
+            connect.Close();
         }
 
         private void btDelString_Click(object sender, EventArgs e)
@@ -179,6 +188,25 @@ namespace test_subd
 
         private void tbDataSeatch_TextChanged(object sender, EventArgs e)
         {
+
+            // Получаем названия всех столбцов DGV1
+            var columnNames = dataGridView1.Columns.Cast<DataGridViewColumn>()
+                                .Select(x => x.HeaderText)
+                                .ToList();
+
+            // Создаем строку фильтрации
+            string filterExpression = string.Empty;
+            foreach (var columnName in columnNames)
+            {
+                if (!string.IsNullOrEmpty(filterExpression))
+                    filterExpression += " OR ";
+
+                filterExpression += $"CONVERT([{columnName}], 'System.String') LIKE '%{tbDataSearch.Text}%'";
+            }
+
+            // Применяем фильтр к строкам DGV1
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = filterExpression;
+
             /*string filterValue = tbDataSearch.Text;
             if (!string.IsNullOrEmpty(filterValue))
             {
@@ -196,7 +224,7 @@ namespace test_subd
                 (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
             }*/
 
-            string searchText = tbDataSearch.Text;
+            /*string searchText = tbDataSearch.Text;
 
             // Получаем CurrencyManager, который управляет привязкой данных к DataGridView
             CurrencyManager currencyManager = (CurrencyManager)BindingContext[dataGridView1.DataSource];
@@ -223,7 +251,7 @@ namespace test_subd
                     // Устанавливаем видимость строки в DataGridView в зависимости от результата поиска
                     row.Visible = rowVisible;
                 }
-            }
+            }*/
         }
 
         private void UpdateComboBoxWithDataGridColumns(System.Windows.Forms.ComboBox comboBox, DataGridView dataGridView)
