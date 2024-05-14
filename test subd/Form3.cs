@@ -18,8 +18,9 @@ namespace test_subd
         private int rlu;
         private bool tfAdd;
         private int selectedId;
+        private string selectedIds;
 
-        public Form3(SqlConnection cnct, int boxItem, int role, bool typeForm, string selID)
+        public Form3(SqlConnection cnct, int boxItem, int role, bool typeForm, string selID, string selIDs)
         {
             connect = cnct;;
             InitializeComponent();
@@ -27,12 +28,12 @@ namespace test_subd
             selectedTable = boxItem;
             tfAdd = typeForm;
             selectedId = Convert.ToInt32(selID);
+            selectedIds = selIDs;
         }
 
         private void Form3_Load(object sender, EventArgs e)
         {
-
-            if(tfAdd == false)
+            if (tfAdd == false)
             {
                 button1.Text = "Изменить";
 
@@ -115,82 +116,16 @@ namespace test_subd
                             }
                         }
 
-                        /*string queryUsers = $"SELECT id_master, id_client FROM Orders WHERE id = @selectedId";
-                        using (SqlCommand command = new SqlCommand(queryUsers, connect))
-                        {
-                            command.Parameters.AddWithValue("@selectedId", selectedId);
-                            using (SqlDataReader reader = command.ExecuteReader())
-                            {
-                                if (reader.Read())
-                                {
-                                    int id_master = reader.GetInt32(0);
-                                    int id_client = reader.GetInt32(1);
-
-                                    // Закрытие текущего DataReader
-                                    reader.Close();
-
-                                    // Получение данных из таблицы Users для id_master
-                                    string queryMaster = $"SELECT name_u, tel_num_u FROM Users WHERE id = @id_master";
-                                    using (SqlCommand masterCommand = new SqlCommand(queryMaster, connect))
-                                    {
-                                        masterCommand.Parameters.AddWithValue("@id_master", id_master);
-                                        using (SqlDataReader masterReader = masterCommand.ExecuteReader())
-                                        {
-                                            if (masterReader.Read())
-                                            {
-                                                string name_master = masterReader.GetString(0);
-                                                string telNum_master = masterReader.GetString(1);
-                                                cbOrdersId_maser.Text = $"{id_master}. {name_master} - {telNum_master}";
-                                            }
-                                        }
-                                    }
-
-                                    // Получение данных из таблицы Clients для id_client
-                                    string queryClient = $"SELECT name_c, tel_num_c FROM Clients WHERE id = @id_client";
-                                    using (SqlCommand clientCommand = new SqlCommand(queryClient, connect))
-                                    {
-                                        clientCommand.Parameters.AddWithValue("@id_client", id_client);
-                                        using (SqlDataReader clientReader = clientCommand.ExecuteReader())
-                                        {
-                                            if (clientReader.Read())
-                                            {
-                                                string name_client = clientReader.GetString(0);
-                                                string telNum_client = clientReader.GetString(1);
-                                                cbOrdersId_client.Text = $"{id_client}. {name_client} - {telNum_client}";
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        string queryDates = $"SELECT date_order, date_complete FROM Orders WHERE id = @selectedId";
-                        using (SqlCommand command = new SqlCommand(queryDates, connect))
-                        {
-                            command.Parameters.AddWithValue("@selectedId", selectedId);
-                            using (SqlDataReader reader = command.ExecuteReader())
-                            {
-                                if (reader.Read())
-                                {
-                                    DateTime date_order = reader.GetDateTime(0);
-                                    DateTime date_complete = reader.GetDateTime(1);
-
-                                    // Закрыть текущий DataReader
-                                    reader.Close();
-
-                                    // Заполнение элементов формы из базы данных
-                                    dtpOrdersDate_order.Value = date_order; // Предположим, что это DateTimePicker для date_order
-                                    dtpOrdersDate_complete.Value = date_complete; // Предположим, что это DateTimePicker для date_complete
-                                }
-                            }
-                        }*/
-
                         break;
                     case 2:
-                        // Создаем команду для выполнения запроса к таблице Orders
-                        string querySelectedOrder = "SELECT id_o, id_s FROM Services_to_orders WHERE id = @selectedId";
+                        string querySelectedOrder = "SELECT id_o, id_s FROM Services_to_orders " +
+                            "INNER JOIN Services ON Services_to_orders.id_s = Services.id " +
+                            "WHERE id_o = @selectedId_o AND name_s = @selectedName_s";
+
                         using (SqlCommand command = new SqlCommand(querySelectedOrder, connect))
                         {
-                            command.Parameters.AddWithValue("@selectedId", selectedId);
+                            command.Parameters.AddWithValue("@selectedId_o", selectedId);
+                            command.Parameters.AddWithValue("@selectedName_s", selectedIds);
                             using (SqlDataReader reader = command.ExecuteReader())
                             {
                                 if (reader.Read())
@@ -202,37 +137,15 @@ namespace test_subd
                                     reader.Close();
 
                                     // Заполнение элементов формы из базы данных для id_o
-                                    string queryOrder = $"SELECT id FROM Orders WHERE id = @id_o";
-                                    using (SqlCommand orderCommand = new SqlCommand(queryOrder, connect))
-                                    {
-                                        orderCommand.Parameters.AddWithValue("@id_o", id_o);
-                                        using (SqlDataReader orderReader = orderCommand.ExecuteReader())
-                                        {
-                                            if (orderReader.Read())
-                                            {
-                                                int orderId = orderReader.GetInt32(0);
-                                                cbS_t_oId_o.Text = orderId.ToString();
-                                            }
-                                        }
-                                    }
+                                    cbS_t_oId_o.Text = id_o.ToString();
 
                                     // Заполнение элементов формы из базы данных для id_s
-                                    string queryService = $"SELECT name_s FROM Services WHERE id = @id_s";
-                                    using (SqlCommand serviceCommand = new SqlCommand(queryService, connect))
-                                    {
-                                        serviceCommand.Parameters.AddWithValue("@id_s", id_s);
-                                        using (SqlDataReader serviceReader = serviceCommand.ExecuteReader())
-                                        {
-                                            if (serviceReader.Read())
-                                            {
-                                                string serviceName = serviceReader.GetString(0);
-                                                cbS_t_oId_s.Text = $"{id_s}. {serviceName}";
-                                            }
-                                        }
-                                    }
+                                    cbS_t_oId_s.Text = $"{id_s}. {selectedIds}";
                                 }
                             }
                         }
+
+
                         break;
                     case 3:
                         using (SqlCommand command = new SqlCommand())
@@ -254,40 +167,35 @@ namespace test_subd
                         }
                         break;
                     case 4:
-                        // Создаем команду для выполнения запроса к таблице Users
-                        string querySelectedUser = "SELECT role_u, name_u, surname_u, tel_num_u, pw, listed FROM Users WHERE id = @selectedId";
-                        using (SqlCommand command = new SqlCommand(querySelectedUser, connect))
+                        // SQL-запрос для выборки данных пользователя по его id
+                        string query = "SELECT roles.name_r, name_u, surname_u, tel_num_u, pw, listed FROM Users " +
+                               "INNER JOIN roles ON Users.role_u = roles.id " +
+                               "WHERE Users.id = @selectedId";
+
+                        using (SqlCommand command = new SqlCommand(query, connect))
                         {
                             command.Parameters.AddWithValue("@selectedId", selectedId);
+
                             using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                if (reader.Read())
+                                if (reader.HasRows)
                                 {
-                                    int roleId = reader.GetInt32(0);
-
-                                    // Получаем имя роли из таблицы Roles по значению role_u
-                                    string roleName = "";
-                                    string queryRole = "SELECT name_r FROM Roles WHERE id = @roleId";
-                                    using (SqlCommand roleCommand = new SqlCommand(queryRole, connect))
+                                    while (reader.Read())
                                     {
-                                        roleCommand.Parameters.AddWithValue("@roleId", roleId);
-                                        roleName = (string)roleCommand.ExecuteScalar();
+                                        cbUsersRole_u.Text = reader["name_r"].ToString(); // Обратите внимание на изменение здесь
+                                        tbUsersName_u.Text = reader["name_u"].ToString();
+                                        tbUsersSurname_u.Text = reader["surname_u"].ToString();
+                                        tbUsersTel_num_u.Text = reader["tel_num_u"].ToString();
+                                        tbUsersPw.Text = reader["pw"].ToString();
+                                        chbUsersListed.Checked = Convert.ToBoolean(reader["listed"]);
                                     }
-
-                                    // Закрываем текущий DataReader
-                                    reader.Close();
-
-                                    // Заполняем элемент cbUsersRole_u и остальные элементы формы
-                                    cbUsersRole_u.Text = $"{roleId}. {roleName}";
-                                    tbUsersName_u.Text = reader.GetString(1);
-                                    tbUsersSurname_u.Text = reader.GetString(2);
-                                    tbUsersTel_num_u.Text = reader.GetString(3);
-                                    tbUsersPw.Text = reader.GetString(4);
-                                    chbUsersListed.Checked = reader.GetBoolean(5);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("No rows found.");
                                 }
                             }
                         }
-
 
                         break;
                     case 5:
@@ -480,69 +388,6 @@ namespace test_subd
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.connectionString))
-            {
-                conn.Open();
-                SqlCommand logRequest = new SqlCommand();
-                logRequest.Connection = conn;
-
-                if (boxItem == "Goods")
-                {
-                    logRequest.CommandText = $"INSERT INTO [Goods] (goodID, firmGoodID, typeDeliveryID, goodModel, goodAmount, goodSize, warehouseID) " +
-                                             $"VALUES ({textBox1.Text}, {comboBox1.SelectedIndex + 1}, {textBox2.Text}, '{textBox3.Text}', {textBox4.Text}, {textBox5.Text}, {textBox6.Text})";
-                }
-                else if (boxItem == "FirmsGoods")
-                {
-                    logRequest.CommandText = $"INSERT INTO [FirmsGoods] (fgid, fgfirms) VALUES ({textBox1.Text}, {textBox2.Text})";
-                }
-
-                else if (boxItem == "EmployeeDriver")
-                {
-                    logRequest.CommandText = $"INSERT INTO [EmployeeDriver] (employeeDriverID, employeeDriverFIO) VALUES ({textBox1.Text}, {textBox2.Text})";
-                }
-                else if (boxItem == "Container")
-                {
-                    logRequest.CommandText = $"INSERT INTO [Container] (containerID, containerType) VALUES ({textBox1.Text}, {textBox2.Text})";
-                }
-                else if (boxItem == "Delivery")
-                {
-                    logRequest.CommandText = $"INSERT INTO [Delivery] (deliveryID, orderID, employeesDriverID, transportID, containerID, destination) " +
-                                             $"VALUES ({textBox1.Text}, {comboBox1.SelectedIndex + 1}, {comboBox2.SelectedIndex + 1}, {comboBox3.SelectedIndex + 1}, {comboBox4.SelectedIndex + 1}, '{textBox5.Text}')";
-                }
-                else if (boxItem == "Orders")
-                {
-                    logRequest.CommandText = $"INSERT INTO [Orders] (orderid, employeeid, customerid, goodid, orderamount) " +
-                                             $"VALUES ({textBox1.Text}, {comboBox1.SelectedIndex + 1}, {comboBox2.SelectedIndex + 1}, {comboBox3.SelectedIndex + 1}, '{textBox4.Text}')";
-                }
-                else if (boxItem == "Roles")
-                {
-                    logRequest.CommandText = $"INSERT INTO [Roles] (RolesID, RolesName) VALUES ({textBox1.Text}, {textBox2.Text})";
-                }
-                else if (boxItem == "Transport")
-                {
-                    logRequest.CommandText = $"INSERT INTO [Transport] (transportID, typeDeliveryID, transport) VALUES ({textBox1.Text}, {comboBox1.SelectedIndex + 1},{textBox2.Text})";
-                }
-                else if (boxItem == "TypeGoods")
-                {
-                    logRequest.CommandText = $"INSERT INTO [TypeGoods] (typeGoodsID, typeGood) VALUES ({textBox1.Text}, {textBox2.Text})";
-                }
-                else if (boxItem == "Typeofdelivery")
-                {
-                    logRequest.CommandText = $"INSERT INTO [Typeofdelivery] (typeDeliveryID, typeDeliveryVehicle) VALUES ({textBox1.Text}, {textBox2.Text})";
-                }
-                else if (boxItem == "Users")
-                {
-                    logRequest.CommandText = $"INSERT INTO [Users] (userID, userFIO, roles, loginRules, passwordRules) VALUES ({textBox1.Text}, {textBox7.Text}), {comboBox2.SelectedIndex + 1}, {textBox4.Text}, {textBox5.Text}";
-                }
-                else if (boxItem == "Warehouses")
-                {
-                    logRequest.CommandText = $"INSERT INTO [Warehouses] (warehouseID, warehouseAdres) VALUES ({textBox1.Text}, {textBox2.Text})";
-                }
-
-                logRequest.ExecuteNonQuery();
-                MessageBox.Show("Запись успешно добавлена");
-            }*/
-
             using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.connectionString))
             {
                 conn.Open();
@@ -562,7 +407,8 @@ namespace test_subd
                         else
                         {
 
-                            //logRequest.CommandText = 
+                            logRequest.CommandText = $"UPDATE Clients SET name_c = '{tbClientsNane_c.Text}', tel_num_c = '{tbClientsTel_num_c.Text}', addres_c = '{tbClientsAdress_c.Text}' WHERE id = {selectedId}";
+                            MessageBox.Show("Строка изменена");
                         }
 
                         break;
@@ -570,9 +416,11 @@ namespace test_subd
                     case 1:
                         if (tfAdd == true)
                         {
-                            int indexOfDot = cbOrdersId_client.Text.IndexOf('.');
-                            string id_master = cbOrdersId_maser.Text.Substring(0, indexOfDot);
-                            string id_client = cbOrdersId_client.Text.Substring(0, indexOfDot);
+                            int indexOfDotMaster = cbOrdersId_maser.Text.IndexOf('.');
+                            string id_master = cbOrdersId_maser.Text.Substring(0, indexOfDotMaster);
+
+                            int indexOfDotClient = cbOrdersId_client.Text.IndexOf('.');
+                            string id_client = cbOrdersId_client.Text.Substring(0, indexOfDotClient);
 
                             logRequest.CommandText = $"INSERT INTO Orders (id_master, id_client, date_order, date_complete) VALUES ({id_master}, {id_client}, " +
                                 $"'{dtpOrdersDate_order.Value.ToString("yyyy-MM-dd")}', '{dtpOrdersDate_complete.Value.ToString("yyyy-MM-dd")}')";
@@ -580,7 +428,17 @@ namespace test_subd
 
                         else
                         {
-                            //logRequest.CommandText = 
+                            int indexOfDotMaster = cbOrdersId_maser.Text.IndexOf('.');
+                            string id_master = cbOrdersId_maser.Text.Substring(0, indexOfDotMaster);
+
+                            int indexOfDotClient = cbOrdersId_client.Text.IndexOf('.');
+                            string id_client = cbOrdersId_client.Text.Substring(0, indexOfDotClient);
+
+                            logRequest.CommandText = $"UPDATE Orders SET id_master = {id_master}, id_client = {id_client}, " +
+                                $"date_order = '{dtpOrdersDate_order.Value.ToString("yyyy-MM-dd")}', " +
+                                $"date_complete = '{dtpOrdersDate_complete.Value.ToString("yyyy-MM-dd")}' " +
+                                $"WHERE id = {selectedId}";
+
                         }
 
                         break;
@@ -597,7 +455,11 @@ namespace test_subd
 
                         else
                         {
-                            //logRequest.CommandText = 
+                            int indexOfDot_s = cbS_t_oId_s.Text.IndexOf('.');
+                            string id_o = cbS_t_oId_o.Text;
+                            string id_s = cbS_t_oId_s.Text.Substring(0, indexOfDot_s);
+
+                            logRequest.CommandText = $"UPDATE Services_to_orders SET id_o = {id_o}, id_s = {id_s} WHERE id_o = {selectedId} AND id_s = {selectedIds}";
                         }
 
                         break;
@@ -610,7 +472,7 @@ namespace test_subd
 
                         else
                         {
-                            //logRequest.CommandText = 
+                            logRequest.CommandText = $"UPDATE Services SET name_s = '{tbServicesName_s.Text}', cost_s = {tbServicesCost_s.Text} WHERE id = {selectedId}";
                         }
                         break;
                     case 4:
@@ -625,7 +487,12 @@ namespace test_subd
                         }
                         else
                         {
-                            //logRequest.CommandText =
+                            int indexOfDot = cbUsersRole_u.Text.IndexOf('.');
+                            string role_u = cbUsersRole_u.Text.Substring(0, indexOfDot);
+                            logRequest.CommandText = $"UPDATE Users SET role_u = '{role_u}', name_u = '{tbUsersName_u.Text}', " +
+                                $"surname_u = '{tbUsersSurname_u.Text}', tel_num_u = '{tbUsersTel_num_u.Text}', " +
+                                $"pw = '{tbUsersPw.Text}', listed = {(chbUsersListed.Checked ? 1 : 0)} WHERE id = {selectedId}";
+
                         }
 
                         break;
@@ -638,21 +505,30 @@ namespace test_subd
 
                         else
                         {
-                            //logRequest.CommandText = 
+                            logRequest.CommandText = $"UPDATE Roles SET name_r = '{tbRolesName_r.Text}' WHERE id = {selectedId}";
                         }
 
                         break;
                 }
                 logRequest.ExecuteNonQuery();
+                //mainForm.LoadDataIntoDataGridView();
                 conn.Close();
             }
+        }
+
+        //Чтоб.... пиво всегда было холодным
+        private Form2 mainForm;
+
+        //Чтоб.... пиво всегда пенилось
+        public Form3(Form2 mainForm)
+        {
+            this.mainForm = mainForm;
         }
 
 
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
             this.Close();
             Form fm = Application.OpenForms["Form2"];
             fm.Show();

@@ -34,15 +34,15 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btAddString = new System.Windows.Forms.Button();
             this.btDelString = new System.Windows.Forms.Button();
-            this.btEditString = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbColumn = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbDataSearch = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -50,6 +50,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // fileSystemWatcher1
@@ -68,7 +69,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(659, 446);
+            this.button1.Location = new System.Drawing.Point(803, 416);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 23);
             this.button1.TabIndex = 1;
@@ -105,7 +106,7 @@
             // 
             // btDelString
             // 
-            this.btDelString.Location = new System.Drawing.Point(200, 28);
+            this.btDelString.Location = new System.Drawing.Point(96, 28);
             this.btDelString.Name = "btDelString";
             this.btDelString.Size = new System.Drawing.Size(80, 23);
             this.btDelString.TabIndex = 10;
@@ -113,28 +114,26 @@
             this.btDelString.UseVisualStyleBackColor = true;
             this.btDelString.Click += new System.EventHandler(this.btDelString_Click);
             // 
-            // btEditString
-            // 
-            this.btEditString.Location = new System.Drawing.Point(105, 28);
-            this.btEditString.Name = "btEditString";
-            this.btEditString.Size = new System.Drawing.Size(80, 23);
-            this.btEditString.TabIndex = 17;
-            this.btEditString.Text = "Изменить";
-            this.btEditString.UseVisualStyleBackColor = true;
-            this.btEditString.Click += new System.EventHandler(this.btEditString_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.btAddString);
-            this.groupBox3.Controls.Add(this.btEditString);
             this.groupBox3.Controls.Add(this.btDelString);
             this.groupBox3.Location = new System.Drawing.Point(468, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(290, 73);
+            this.groupBox3.Size = new System.Drawing.Size(190, 73);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Строка";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(93, 54);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(35, 13);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "label1";
             // 
             // groupBox4
             // 
@@ -194,20 +193,21 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Поиск";
             // 
-            // label10
+            // dataGridView2
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(200, 59);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(35, 13);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "label1";
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(764, 96);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(167, 309);
+            this.dataGridView2.TabIndex = 21;
+            this.dataGridView2.Visible = false;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 479);
+            this.ClientSize = new System.Drawing.Size(948, 451);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -225,6 +225,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -238,7 +239,6 @@
         private System.Windows.Forms.Button btDelString;
         private System.Windows.Forms.Button btAddString;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btEditString;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cbColumn;
@@ -246,5 +246,6 @@
         private System.Windows.Forms.TextBox tbDataSearch;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
