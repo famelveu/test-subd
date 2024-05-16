@@ -34,35 +34,41 @@ namespace test_subd
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
-            // Добавляем обработчик события CellDoubleClick
-            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
-            dataGridView1.CellClick += dataGridView1_CellClick;
-
-            if (roleForm != 1)
+            try
             {
-                btDelString.Enabled = false;
-                comboBox1.Items.RemoveAt(3);
-                comboBox1.Items.RemoveAt(3);
-                comboBox1.Items.RemoveAt(3);
-            }   
-            SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString);  
-                
-            sqlConnect.Open();
-            SqlCommand showTable = new SqlCommand();
-            showTable.CommandText = $"SELECT * FROM Клиенты";
-            showTable.Connection = sqlConnect;
+                // Добавляем обработчик события CellDoubleClick
+                dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+                dataGridView1.CellClick += dataGridView1_CellClick;
 
-            // SqlAdapter - прослойка между источником данных и базой данных
-            SqlDataAdapter adapter = new SqlDataAdapter(showTable);
-            DataSet dataSet = new DataSet();
-            // заполняем источник данных полученными из адаптера записями
-            adapter.Fill(dataSet);
-            dataGridView1.DataSource = dataSet.Tables[0];
-            UpdateComboBoxWithDataGridColumns(cbColumn, dataGridView1);
-            dataGridView1.Columns[0].Visible = false;
-            sqlConnect.Close();
-            UpdatePrice();
+                if (roleForm != 1)
+                {
+                    btDelString.Enabled = false;
+                    comboBox1.Items.RemoveAt(3);
+                    comboBox1.Items.RemoveAt(3);
+                    comboBox1.Items.RemoveAt(3);
+                }   
+                SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString);  
+                
+                sqlConnect.Open();
+                SqlCommand showTable = new SqlCommand();
+                showTable.CommandText = $"SELECT * FROM Клиенты";
+                showTable.Connection = sqlConnect;
+
+                // SqlAdapter - прослойка между источником данных и базой данных
+                SqlDataAdapter adapter = new SqlDataAdapter(showTable);
+                DataSet dataSet = new DataSet();
+                // заполняем источник данных полученными из адаптера записями
+                adapter.Fill(dataSet);
+                dataGridView1.DataSource = dataSet.Tables[0];
+                dataGridView1.Columns[0].Visible = false;
+                sqlConnect.Close();
+                UpdatePrice();
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -95,78 +101,64 @@ namespace test_subd
 
         public void LoadDataIntoDataGridView()
         {
-            SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString);
-            SqlCommand logRequst = new SqlCommand();
-            UpdatePrice();
-            switch (comboBox1.SelectedIndex)
+            try
             {
-                /*case 0:
-                    logRequst.CommandText = $"SELECT * FROM Clients";
-                    break;
-                case 1:
-                    logRequst.CommandText = $"SELECT Orders.id, Users.name_u AS name_master, Clients.name_c AS name_client, Orders.price, " +
-                        $"Orders.date_order, Orders.date_complete FROM Orders  JOIN Users ON Users.id = Orders.id_master JOIN Clients ON Clients.id = Orders.id_client";
-                    break;
-                case 2:
-                    logRequst.CommandText = $"SELECT Services_to_orders.id_o, Services.name_s AS name_serv FROM Services_to_orders JOIN Services " +
-                        $"ON Services.id = Services_to_orders.id_s";
-                    break;
-                case 3:
-                    logRequst.CommandText = $"SELECT * FROM Services";
-                    break;
-                case 4:
-                    logRequst.CommandText = $"SELECT Users.id, Roles.name_r AS role_u, Users.name_u, Users.surname_u," +
-                        $" Users.tel_num_u, Users.pw, Users.listed FROM Users JOIN Roles ON Roles.id = Users.role_u";
-                    break;
-                case 5:
-                    logRequst.CommandText = $"SELECT * FROM Roles";
-                    break;*/
+                SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString);
+                SqlCommand logRequst = new SqlCommand();
+                UpdatePrice();
+                switch (comboBox1.SelectedIndex)
+                {
+                    case 0:
+                        logRequst.CommandText = $"SELECT * FROM Клиенты";
+                        break;
+                    case 1:
+                        logRequst.CommandText = $"SELECT * FROM Заказы";
+                        break;
+                    case 2:
+                        logRequst.CommandText = $"SELECT * FROM Услугикзаказам";
+                        break;
+                    case 3:
+                        logRequst.CommandText = $"SELECT * FROM Услуги";
+                        break;
+                    case 4:
+                        logRequst.CommandText = $"SELECT * FROM Пользователи";
+                        break;
+                    case 5:
+                        logRequst.CommandText = $"SELECT * FROM Роли";
+                        break;
+                }
 
-                case 0:
-                    logRequst.CommandText = $"SELECT * FROM Клиенты";
-                    break;
-                case 1:
-                    logRequst.CommandText = $"SELECT * FROM Заказы";
-                    break;
-                case 2:
-                    logRequst.CommandText = $"SELECT * FROM Услугикзаказам";
-                    break;
-                case 3:
-                    logRequst.CommandText = $"SELECT * FROM Услуги";
-                    break;
-                case 4:
-                    logRequst.CommandText = $"SELECT * FROM Пользователи";
-                    break;
-                case 5:
-                    logRequst.CommandText = $"SELECT * FROM Роли";
-                    break;
+                logRequst.Connection = sqlConnect;
+
+                // SqlAdapter - прослойка между источником данных и базой данных
+                SqlDataAdapter adapter = new SqlDataAdapter(logRequst);
+                DataSet dataSet = new DataSet();
+                // заполняем источник данных полученными из адаптера записями
+                adapter.Fill(dataSet);
+                dataGridView1.DataSource = dataSet.Tables[0];
+                tbDataSearch.Clear();
+
+                if (comboBox1.SelectedItem != "Заказы")
+                {
+                    dataGridView2.Visible = false;
+                    if (comboBox1.SelectedItem != "Услуги к заказам")
+                    {
+                        dataGridView1.Columns[0].Visible = false;
+                    }
+                }
+                else
+                {
+                    dataGridView2.Visible = true;
+                    dataGridView1.Columns[0].Visible = true;
+                }
+
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                sqlConnect.Close();
             }
-
-            if (comboBox1.SelectedItem != "Заказы")
+            catch (Exception ex)
             {
-                dataGridView2.Visible = false;
-                dataGridView1.Columns[0].Visible = false;
+                MessageBox.Show("Ошибка: " + ex.Message);
             }
-            else
-            {
-                dataGridView2.Visible = true;
-                dataGridView1.Columns[0].Visible = true;
-            }
-
-            logRequst.Connection = sqlConnect;
-
-            // SqlAdapter - прослойка между источником данных и базой данных
-            SqlDataAdapter adapter = new SqlDataAdapter(logRequst);
-            DataSet dataSet = new DataSet();
-            // заполняем источник данных полученными из адаптера записями
-            adapter.Fill(dataSet);
-            dataGridView1.DataSource = dataSet.Tables[0];
-
-            UpdateComboBoxWithDataGridColumns(cbColumn, dataGridView1);
-
-            tbDataSearch.Clear();
-
-            sqlConnect.Close();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -176,23 +168,30 @@ namespace test_subd
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (comboBox1.SelectedItem == "Заказы")
+            try
             {
-                SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString);
-                SqlCommand logRequst1 = new SqlCommand();
-                dataGridView2.Visible = true;
-                dataGridView1.Columns[0].Visible = true;
-                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                logRequst1.CommandText = $"SELECT name_s FROM Services_to_orders JOIN Services ON Services_to_orders.id_s = Services.id WHERE id_o = {selectedRow.Cells[0].Value}";
+                if (comboBox1.SelectedItem == "Заказы")
+                {
+                    SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString);
+                    SqlCommand logRequst1 = new SqlCommand();
+                    dataGridView2.Visible = true;
+                    dataGridView1.Columns[0].Visible = true;
+                    DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+                    logRequst1.CommandText = $"SELECT name_s AS 'Услуга' FROM Services_to_orders JOIN Services ON Services_to_orders.id_s = Services.id WHERE id_o = {selectedRow.Cells[0].Value}";
 
-                logRequst1.Connection = sqlConnect;
+                    logRequst1.Connection = sqlConnect;
 
-                // SqlAdapter - прослойка между источником данных и базой данных
-                SqlDataAdapter adapter1 = new SqlDataAdapter(logRequst1);
-                DataSet dataSet1 = new DataSet();
-                // заполняем источник данных полученными из адаптера записями
-                adapter1.Fill(dataSet1);
-                dataGridView2.DataSource = dataSet1.Tables[0];
+                    // SqlAdapter - прослойка между источником данных и базой данных
+                    SqlDataAdapter adapter1 = new SqlDataAdapter(logRequst1);
+                    DataSet dataSet1 = new DataSet();
+                    // заполняем источник данных полученными из адаптера записями
+                    adapter1.Fill(dataSet1);
+                    dataGridView2.DataSource = dataSet1.Tables[0];
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
             }
         }
 
@@ -210,118 +209,168 @@ namespace test_subd
 
         private void addString_Click(object sender, EventArgs e)
         {
-            int boxItem = comboBox1.SelectedIndex;
-            // Переменная для определеня назначения Form3
-            bool typeform = true;
-            this.Hide();
-            Form3 fm = new Form3(connect, boxItem, roleForm, typeform, "0", "0");
-            fm.ShowDialog();
-            //connect.Close();
+            try
+            {
+                int boxItem = comboBox1.SelectedIndex;
+                // Переменная для определеня назначения Form3
+                bool typeform = true;
+                this.Hide();
+                Form3 fm = new Form3(connect, boxItem, roleForm, typeform, "0", "0");
+                fm.Text = "Добавление";
+                fm.ShowDialog();
+                //connect.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
+            }
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (roleForm == 1)
+            try
             {
-                int boxItem = comboBox1.SelectedIndex;
-                // Переменная для определения назначения Form3
-                bool typeform = false;
-                this.Hide();
-
-                // Проверяем, что индекс строки действителен
-                if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
+                if (roleForm == 1)
                 {
-                    DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+                    int boxItem = comboBox1.SelectedIndex;
+                    // Переменная для определения назначения Form3
+                    bool typeform = false;
+                    this.Hide();
 
-                    // Получаем значения из нужных столбцов по индексу столбца
-                    string selID = selectedRow.Cells[0].Value.ToString();
-                    string selIDs = selectedRow.Cells[1].Value.ToString();
+                    // Проверяем, что индекс строки действителен
+                    if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
+                    {
+                        DataGridViewRow selectedRow = dataGridView1.CurrentRow;
 
-                    // Создаем экземпляр Form3 и передаем необходимые значения
-                    Form3 fm = new Form3(connect, boxItem, roleForm, typeform, selID, selIDs);
-                    fm.ShowDialog();
+                        // Получаем значения из нужных столбцов по индексу столбца
+                        string selID = selectedRow.Cells[0].Value.ToString();
+                        string selIDs = selectedRow.Cells[1].Value.ToString();
+
+                        // Создаем экземпляр Form3 и передаем необходимые значения
+                        Form3 fm = new Form3(connect, boxItem, roleForm, typeform, selID, selIDs);
+                        fm.Text = "Изменение";
+                        fm.ShowDialog();
+                    }
                 }
-
-                //connect.Close();
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
+            }
         }
 
         private void btDelString_Click(object sender, EventArgs e)
         {
-            // Получаем выбранную строку
-            DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-
-            // Формируем текст для подтверждения удаления
-            string confirmationText = $"Вы действительно хотите удалить из таблицы ";
-
-            // Получаем значения всех столбцов выбранной строки и добавляем их к тексту подтверждения
-            for (int i = 0; i < selectedRow.Cells.Count; i++)
+            try
             {
-                confirmationText += $"{selectedRow.Cells[i].Value.ToString()}";
-                if (i < selectedRow.Cells.Count - 1)
-                    confirmationText += " - ";
+                // Получаем выбранную строку
+                DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+
+                // Формируем текст для подтверждения удаления
+                string confirmationText = $"Вы действительно хотите удалить из таблицы ";
+
+                // Получаем значения всех столбцов выбранной строки и добавляем их к тексту подтверждения
+                for (int i = 0; i < selectedRow.Cells.Count; i++)
+                {
+                    confirmationText += $"{selectedRow.Cells[i].Value.ToString()}";
+                    if (i < selectedRow.Cells.Count - 1)
+                        confirmationText += " - ";
+                }
+
+                // Показываем окно подтверждения
+                DialogResult result = MessageBox.Show(confirmationText, "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                // Если пользователь подтвердил удаление, выполняем операцию
+                if (result == DialogResult.Yes)
+                {
+                    // Устанавливаем полученное значение в Label
+                    string id = selectedRow.Cells[0].Value.ToString();
+                    string id_s = selectedRow.Cells[1].Value.ToString();
+
+                    SqlCommand logRequest = new SqlCommand();
+                    logRequest.Connection = connect;
+
+                    switch (comboBox1.SelectedIndex)
+                    {
+                        case 0:
+                            logRequest.CommandText = $"DELETE FROM Clients WHERE ID = {id}";
+                            break;
+                        case 1:
+                            logRequest.CommandText = $"DELETE FROM Orsers WHERE ID = {id}";
+                            break;
+                        case 2:
+                            // Получаем название услуги из выбранной строки DataGridView
+                            string serviceName = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+
+                            // Создаем SQL-запрос для получения ID услуги по названию услуги
+                            string sql = "SELECT ID FROM Services WHERE Name_s = @ServiceName";
+
+                            // Создаем команду SQL с параметром
+                            using (SqlCommand cmd = new SqlCommand(sql, connect))
+                            {
+                                // Добавляем параметр @ServiceName и устанавливаем его значение
+                                cmd.Parameters.AddWithValue("@ServiceName", serviceName);
+
+                                // Открываем соединение с базой данных
+                                //connect.Open();
+
+                                // Выполняем запрос и получаем ID услуги
+                                int serviceId = (int)cmd.ExecuteScalar();
+
+                                logRequest.CommandText = $"DELETE FROM Services_to_orders WHERE ID_O = {id} AND ID_S = {serviceId}";
+
+                                // Закрываем соединение
+                                //connect.Close();
+                            }
+                        
+                            break;
+                        case 3:
+                            logRequest.CommandText = $"DELETE FROM Services WHERE ID = {id}";
+                            break;
+                        case 4:
+                            logRequest.CommandText = $"DELETE FROM Users WHERE ID = {id}";
+                            break;
+                        case 5:
+                            logRequest.CommandText = $"DELETE FROM Roles WHERE ID = {id}";
+                            break;
+                    }
+                    logRequest.ExecuteNonQuery();
+                }
+                UpdatePrice();
+                LoadDataIntoDataGridView();
             }
-
-            // Показываем окно подтверждения
-            DialogResult result = MessageBox.Show(confirmationText, "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            // Если пользователь подтвердил удаление, выполняем операцию
-            if (result == DialogResult.Yes)
+            catch (Exception ex)
             {
-                // Устанавливаем полученное значение в Label
-                label10.Text = selectedRow.Cells[0].Value.ToString();
+                MessageBox.Show("Ошибка: " + ex.Message);
             }
-            UpdatePrice();
         }
 
         private void tbDataSeatch_TextChanged(object sender, EventArgs e)
         {
-
-            // Получаем названия всех столбцов DGV1
-            var columnNames = dataGridView1.Columns.Cast<DataGridViewColumn>()
+            try
+            {
+                // Получаем названия всех столбцов DGV1
+                var columnNames = dataGridView1.Columns.Cast<DataGridViewColumn>()
                                 .Select(x => x.HeaderText)
                                 .ToList();
 
-            // Создаем строку фильтрации
-            string filterExpression = string.Empty;
-            foreach (var columnName in columnNames)
-            {
-                if (!string.IsNullOrEmpty(filterExpression))
-                    filterExpression += " OR ";
+                // Создаем строку фильтрации
+                string filterExpression = string.Empty;
+                foreach (var columnName in columnNames)
+                {
+                    if (!string.IsNullOrEmpty(filterExpression))
+                        filterExpression += " OR ";
 
-                filterExpression += $"CONVERT([{columnName}], 'System.String') LIKE '%{tbDataSearch.Text}%'";
+                    filterExpression += $"CONVERT([{columnName}], 'System.String') LIKE '%{tbDataSearch.Text}%'";
+                }
+
+                // Применяем фильтр к строкам DGV1
+                (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = filterExpression;
             }
-
-            // Применяем фильтр к строкам DGV1
-            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = filterExpression;
-
-        }
-
-        private void UpdateComboBoxWithDataGridColumns(System.Windows.Forms.ComboBox comboBox, DataGridView dataGridView)
-        {
-            // Очистка коллекции элементов ComboBox перед добавлением новых значений
-            comboBox.Items.Clear();
-
-            // Получение названий столбцов из DataGridView
-            foreach (DataGridViewColumn column in dataGridView.Columns)
+            catch (Exception ex)
             {
-                // Добавление названий столбцов в коллекцию элементов ComboBox
-                comboBox.Items.Add(column.HeaderText);
-            }
-
-            // Выбор первого элемента в ComboBox (если нужно)
-            if (comboBox.Items.Count > 0)
-            {
-                comboBox.SelectedIndex = 0;
+                MessageBox.Show("Ошибка: " + ex.Message);
             }
         }
-
-        private void cbColumn_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            tbDataSearch.Clear();
-        }
-
-
     }
 }
