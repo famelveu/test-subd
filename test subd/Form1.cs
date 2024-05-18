@@ -67,8 +67,16 @@ namespace test_subd
                         this.Hide();
 
                         // Здесь можно перейти к другой форме или выполнить другие действия
-                        Form2 fm = new Form2(connect, role);
-                        fm.ShowDialog();
+                        if(role == 2)
+                        {
+                            Form4 fm = new Form4(connect);
+                            fm.ShowDialog();
+                        }
+                        else
+                        {
+                            Form2 fm = new Form2(connect, role);
+                            fm.ShowDialog();
+                        }
                     }
                     else
                     {
