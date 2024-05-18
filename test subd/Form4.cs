@@ -22,18 +22,14 @@ namespace test_subd
             connect = cnct;
             InitializeComponent();
         }
-
+        
         private void Form4_Load_1(object sender, EventArgs e)
         {
             try
             {
-                // Добавляем обработчик события CellDoubleClick
-                //dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
                 dataGridView1.CellClick += dataGridView1_CellClick;
-                listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
-                //listBox1.Click += listBox1_Click;
-                //listBox1.MouseUp += listBox1_MouseUp;
-                //listBox1.MouseMove += listBox1_MouseMove;
+                dataGridView1.CellDoubleClick += DataGridView1_CellDoubleClick;
+                tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
 
                 SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString);
 
@@ -52,6 +48,60 @@ namespace test_subd
                 sqlConnect.Close();
                 UpdatePrice();
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                // Создаем словарь для хранения значений из таблицы Users
+                Dictionary<int, Tuple<string, string>> usersDictionary = new Dictionary<int, Tuple<string, string>>();
+
+                string queryUsers = "SELECT id, name_u, tel_num_u FROM Users";
+                using (SqlCommand command = new SqlCommand(queryUsers, connect))
+                {
+                    // Выполняем запрос и получаем результаты
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Перебираем строки результата
+                        while (reader.Read())
+                        {
+                            // Получаем значения столбцов id, name_u и tel_num_u
+                            int id = reader.GetInt32(0);
+                            string name = reader.GetString(1);
+                            string telNum = reader.GetString(2);
+
+                            // Добавляем значения в словарь в виде кортежа
+                            usersDictionary.Add(id, Tuple.Create(name, telNum));
+                        }
+                    }
+                }
+                foreach (var kvp in usersDictionary)
+                {
+                    cbOrdersId_maser.Items.Add($"{kvp.Key}. {kvp.Value.Item1} - {kvp.Value.Item2}");
+                }
+
+                // Создаем словарь для хранения значений из таблицы Clients
+                Dictionary<int, Tuple<string, string>> clientsDictionary = new Dictionary<int, Tuple<string, string>>();
+
+                string queryClients = "SELECT id, name_c, tel_num_c FROM Clients";
+                using (SqlCommand command = new SqlCommand(queryClients, connect))
+                {
+                    // Выполняем запрос и получаем результаты
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Перебираем строки результата
+                        while (reader.Read())
+                        {
+                            // Получаем значения столбцов id, name_c и tel_num_c
+                            int id = reader.GetInt32(0);
+                            string name = reader.GetString(1);
+                            string telNum = reader.GetString(2);
+
+                            // Добавляем значения в словарь в виде кортежа
+                            clientsDictionary.Add(id, Tuple.Create(name, telNum));
+                        }
+                    }
+                }
+                foreach (var kvp in clientsDictionary)
+                {
+                    cbOrdersId_client.Items.Add($"{kvp.Key}. {kvp.Value.Item1} - {kvp.Value.Item2}");
+                }
             }
             catch (Exception ex)
             {
@@ -144,14 +194,13 @@ namespace test_subd
 
                 if (comboBox1.SelectedItem != "Заказы")
                 {
+                    button3.Visible = false;
                     listBox1.Visible = false;
-                    if (comboBox1.SelectedItem != "Услуги к заказам")
-                    {
-                        dataGridView1.Columns[0].Visible = false;
-                    }
+                    dataGridView1.Columns[0].Visible = false;
                 }
                 else
                 {
+                    button3.Visible = true;
                     listBox1.Visible = true;
                     dataGridView1.Columns[0].Visible = true;
                 }
@@ -170,8 +219,9 @@ namespace test_subd
             {
                 if (comboBox1.SelectedItem == "Заказы")
                 {
+
                     // Очищаем выделение в ListBox
-                    listBox1.ClearSelected();
+                    //listBox1.ClearSelected();
 
                     // Соединение с базой данных
                     using (SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString))
@@ -203,7 +253,9 @@ namespace test_subd
                         DataGridViewRow selectedRow = dataGridView1.CurrentRow;
 
                         // Запрос к базе данных для получения услуг для выбранного заказа
+                        
                         string query = $"SELECT name_s FROM Services_to_orders JOIN Services ON Services_to_orders.id_s = Services.id WHERE id_o = {selectedRow.Cells[0].Value}";
+
 
                         // Создание команды
                         using (SqlCommand command = new SqlCommand(query, sqlConnect))
@@ -232,8 +284,7 @@ namespace test_subd
             }
         }
 
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             // Получаем id выбранного заказа из DataGridView
             int orderId = (int)dataGridView1.CurrentRow.Cells[0].Value;
@@ -295,6 +346,123 @@ namespace test_subd
                 command.Parameters.AddWithValue("@orderId", orderId);
                 command.Parameters.AddWithValue("@serviceId", serviceId);
                 command.ExecuteNonQuery();
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 0) // Проверяем, что выбрана первая вкладка
+            {
+                this.Width = 800; // Устанавливаем ширину формы
+                this.Height = 447; // Устанавливаем высоту формы
+            }
+            if (tabControl1.SelectedIndex == 1) // Проверяем, что выбрана первая вкладка
+            {
+                this.Width = 416; // Устанавливаем ширину формы
+                this.Height = 240; // Устанавливаем высоту формы
+                radioButton1.Checked = true;
+            }
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            panelOrders.Location = new Point(0,0);
+            panelClients.Location = new Point(392, 274);
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            panelOrders.Location = new Point(392, 274);
+            panelClients.Location = new Point(0, 0);
+        }
+
+        //Очистка элементов
+        private void ClearAllElements()
+        {
+            tbClientsAdress_c.Text = string.Empty;
+            tbClientsNane_c.Text = string.Empty;
+            tbClientsTel_num_c.Text = string.Empty;
+            cbOrdersId_client.Text = string.Empty;
+            cbOrdersId_maser.Text = string.Empty;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SqlCommand logRequest = new SqlCommand();
+            logRequest.Connection = connect;
+
+            if(radioButton1.Checked == true)
+            {
+                logRequest.CommandText = $"INSERT INTO Clients (name_c, tel_num_c, addres_c) " +
+                                    $"VALUES ('{tbClientsNane_c.Text}', '{tbClientsTel_num_c.Text}', '{tbClientsAdress_c.Text}')";
+                MessageBox.Show("Строка добавлена");
+            }
+            
+            if(radioButton2.Checked == true)
+            {
+                int indexOfDotMaster = cbOrdersId_maser.Text.IndexOf('.');
+                string id_master = cbOrdersId_maser.Text.Substring(0, indexOfDotMaster);
+
+                int indexOfDotClient = cbOrdersId_client.Text.IndexOf('.');
+                string id_client = cbOrdersId_client.Text.Substring(0, indexOfDotClient);
+                
+                if(checkBox1.Checked == false)
+                {
+                    logRequest.CommandText = $"INSERT INTO Orders (id_master, id_client, date_order, date_complete) VALUES ({id_master}, {id_client}, " +
+                    $"'{dtpOrdersDate_order.Value.ToString("yyyy-MM-dd")}', '{dtpOrdersDate_complete.Value.ToString("yyyy-MM-dd")}')";
+                    MessageBox.Show("Строка добавлена");
+                    LoadDataIntoDataGridView();
+                }
+                else
+                {
+                    logRequest.CommandText = $"INSERT INTO Orders (id_master, id_client, date_order) VALUES ({id_master}, {id_client}, " +
+                    $"'{dtpOrdersDate_order.Value.ToString("yyyy-MM-dd")}')";
+                    MessageBox.Show("Строка добавлена");
+                    LoadDataIntoDataGridView();
+                }
+            }
+            logRequest.ExecuteNonQuery();
+        }
+
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tabControl1.SelectedIndex = 1;
+            radioButton1.Visible = false;
+            radioButton2 .Visible = false;
+            panelClients.Location = new Point(392, 274);
+            panelOrders.Location = new Point(392, 274);
+            panelComplete.Location = new Point(0, 0);
+
+            // Проверяем, что двойной щелчок произошел в пятом столбце
+            if (e.ColumnIndex == 4 && e.RowIndex >= 0) // Убедитесь, что строка действительная
+            {
+                // Получаем id выбранного заказа из первого столбца (индекс 0)
+                int orderId = (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+
+                // Получаем новую дату завершения заказа из DateTimePicker
+                DateTime newCompleteDate = dateTimePicker1.Value;
+
+                // Обновляем значение date_complete в базе данных для выбранного заказа
+                SqlCommand logRequest = new SqlCommand();
+                logRequest.Connection = connect;
+
+                    logRequest.CommandText = $"UPDATE Orders SET date_complete = @newCompleteDate WHERE id = @orderId";
+                    MessageBox.Show("Строка добавлена");
+
+                logRequest.ExecuteNonQuery();
+
+                // Обновляем отображение данных в DataGridView
+                LoadDataIntoDataGridView();
             }
         }
 

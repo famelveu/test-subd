@@ -433,6 +433,7 @@ namespace test_subd
 
                                 logRequest.CommandText = $"INSERT INTO Orders (id_master, id_client, date_order, date_complete) VALUES ({id_master}, {id_client}, " +
                                     $"'{dtpOrdersDate_order.Value.ToString("yyyy-MM-dd")}', '{dtpOrdersDate_complete.Value.ToString("yyyy-MM-dd")}')";
+                                MessageBox.Show("Строка добавлена");
                             }
 
                             else
@@ -447,7 +448,7 @@ namespace test_subd
                                     $"date_order = '{dtpOrdersDate_order.Value.ToString("yyyy-MM-dd")}', " +
                                     $"date_complete = '{dtpOrdersDate_complete.Value.ToString("yyyy-MM-dd")}' " +
                                     $"WHERE id = {selectedId}";
-
+                                MessageBox.Show("Строка изменена");
                             }
 
                             break;
@@ -460,6 +461,7 @@ namespace test_subd
                                 string id_s = cbS_t_oId_s.Text.Substring(0, indexOfDot_s);
 
                                 logRequest.CommandText = $"INSERT INTO Services_to_orders (id_o, id_s) VALUES ({id_o}, {id_s})";
+                                MessageBox.Show("Строка добавлена");
                             }
 
                             else
@@ -469,6 +471,7 @@ namespace test_subd
                                 string id_s = cbS_t_oId_s.Text.Substring(0, indexOfDot_s);
 
                                 logRequest.CommandText = $"UPDATE Services_to_orders SET id_o = {id_o}, id_s = {id_s} WHERE id_o = {selectedId} AND id_s = {selectedIds}";
+                                MessageBox.Show("Строка изменена");
                             }
 
                             break;
@@ -477,11 +480,13 @@ namespace test_subd
                             if (tfAdd == true)
                             {
                                 logRequest.CommandText = $"INSERT INTO Services (name_s, cost_s) VALUES ('{tbServicesName_s.Text}', {tbServicesCost_s.Text})";
+                                MessageBox.Show("Строка добавлена");
                             }
 
                             else
                             {
                                 logRequest.CommandText = $"UPDATE Services SET name_s = '{tbServicesName_s.Text}', cost_s = {tbServicesCost_s.Text} WHERE id = {selectedId}";
+                                MessageBox.Show("Строка изменена");
                             }
                             break;
                         case 4:
@@ -493,6 +498,7 @@ namespace test_subd
                                 logRequest.CommandText = $"INSERT INTO Users (role_u, name_u, surname_u, tel_num_u, pw, listed) VALUES ('{role_u}'," +
                                     $" '{tbUsersName_u.Text}', '{tbUsersSurname_u.Text}', '{tbUsersTel_num_u.Text}', '{tbUsersPw.Text}', {(chbUsersListed.Checked ? 1 : 0)})";
 
+                                MessageBox.Show("Строка добавлена");
                             }
                             else
                             {
@@ -501,7 +507,7 @@ namespace test_subd
                                 logRequest.CommandText = $"UPDATE Users SET role_u = '{role_u}', name_u = '{tbUsersName_u.Text}', " +
                                     $"surname_u = '{tbUsersSurname_u.Text}', tel_num_u = '{tbUsersTel_num_u.Text}', " +
                                     $"pw = '{tbUsersPw.Text}', listed = {(chbUsersListed.Checked ? 1 : 0)} WHERE id = {selectedId}";
-
+                                MessageBox.Show("Строка изменена");
                             }
 
                             break;
@@ -510,11 +516,13 @@ namespace test_subd
                             if (tfAdd == true)
                             {
                                 logRequest.CommandText = $"INSERT INTO Roles (name_r) VALUES ('{tbRolesName_r.Text}')";
+                                MessageBox.Show("Строка добавлена");
                             }
 
                             else
                             {
                                 logRequest.CommandText = $"UPDATE Roles SET name_r = '{tbRolesName_r.Text}' WHERE id = {selectedId}";
+                                MessageBox.Show("Строка изменена");
                             }
 
                             break;
