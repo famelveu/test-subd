@@ -98,6 +98,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.listBox1);
             this.tabPage1.Controls.Add(this.groupBox5);
@@ -110,7 +111,6 @@
             this.tabPage1.Size = new System.Drawing.Size(792, 421);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Просмотр";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -125,6 +125,7 @@
             // 
             // listBox1
             // 
+            this.listBox1.BackColor = System.Drawing.SystemColors.Control;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(607, 57);
             this.listBox1.Name = "listBox1";
@@ -186,6 +187,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 57);
             this.dataGridView1.Name = "dataGridView1";
