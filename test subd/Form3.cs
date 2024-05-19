@@ -202,9 +202,23 @@ namespace test_subd
 
                             break;
                         case 5:
-                        
-                            break;
+                            using (SqlCommand command = new SqlCommand())
+                            {
+                                command.Connection = connect;
 
+                                command.CommandText = $"SELECT name_r FROM Roles WHERE id = @selectedId";
+                                command.Parameters.AddWithValue("@selectedId", selectedId);
+
+                                using (SqlDataReader reader = command.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        // Заполняем элементы формы данными из базы данных
+                                        tbRolesName_r.Text = reader["name_r"].ToString();
+                                    }
+                                }
+                            }
+                            break;
                     }
                 }
                 else

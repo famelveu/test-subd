@@ -60,12 +60,12 @@
             this.dataGridView1.Location = new System.Drawing.Point(13, 70);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(745, 343);
+            this.dataGridView1.Size = new System.Drawing.Size(598, 343);
             this.dataGridView1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(803, 385);
+            this.button1.Location = new System.Drawing.Point(685, 387);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 23);
             this.button1.TabIndex = 1;
@@ -153,7 +153,7 @@
             // 
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(764, 70);
+            this.dataGridView2.Location = new System.Drawing.Point(617, 70);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(167, 309);
@@ -164,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(940, 422);
+            this.ClientSize = new System.Drawing.Size(791, 422);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
