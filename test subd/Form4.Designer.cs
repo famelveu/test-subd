@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form4));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tbDataSearch = new System.Windows.Forms.TextBox();
@@ -39,9 +40,14 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panelComplete = new System.Windows.Forms.Panel();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button2 = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.panelOrders = new System.Windows.Forms.Panel();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dtpOrdersDate_complete = new System.Windows.Forms.DateTimePicker();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.dtpOrdersDate_order = new System.Windows.Forms.DateTimePicker();
@@ -58,18 +64,16 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbClientsTel_num_c = new System.Windows.Forms.TextBox();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.panelComplete = new System.Windows.Forms.Panel();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.panelComplete.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.panelOrders.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -79,8 +83,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.panelComplete.SuspendLayout();
-            this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -108,6 +111,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Просмотр";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(607, 391);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(82, 23);
+            this.button3.TabIndex = 23;
+            this.button3.Text = "Подтвердить";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // listBox1
             // 
@@ -168,6 +182,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Назад";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView1
             // 
@@ -194,6 +209,42 @@
             this.tabPage2.Text = "Добавление";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // panelComplete
+            // 
+            this.panelComplete.Controls.Add(this.groupBox11);
+            this.panelComplete.Controls.Add(this.groupBox10);
+            this.panelComplete.Location = new System.Drawing.Point(0, 274);
+            this.panelComplete.Name = "panelComplete";
+            this.panelComplete.Size = new System.Drawing.Size(381, 140);
+            this.panelComplete.TabIndex = 8;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.dateTimePicker1);
+            this.groupBox10.Location = new System.Drawing.Point(202, 22);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(152, 42);
+            this.groupBox10.TabIndex = 7;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Дата выполнения";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(7, 16);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(137, 20);
+            this.dateTimePicker1.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(306, 146);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Добавить";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // radioButton2
             // 
@@ -227,6 +278,18 @@
             this.groupBox8.TabIndex = 7;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Дата выполнения";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(6, 42);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(71, 17);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "В работе";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // dtpOrdersDate_complete
             // 
@@ -362,63 +425,23 @@
             this.tbClientsTel_num_c.Size = new System.Drawing.Size(137, 20);
             this.tbClientsTel_num_c.TabIndex = 0;
             // 
-            // button2
+            // groupBox11
             // 
-            this.button2.Location = new System.Drawing.Point(306, 146);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Добавить";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.groupBox11.Controls.Add(this.comboBox2);
+            this.groupBox11.Location = new System.Drawing.Point(21, 22);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(152, 42);
+            this.groupBox11.TabIndex = 5;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Мастер";
             // 
-            // button3
+            // comboBox2
             // 
-            this.button3.Location = new System.Drawing.Point(607, 391);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(82, 23);
-            this.button3.TabIndex = 23;
-            this.button3.Text = "Подтвердить";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Visible = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // panelComplete
-            // 
-            this.panelComplete.Controls.Add(this.groupBox10);
-            this.panelComplete.Location = new System.Drawing.Point(5, 274);
-            this.panelComplete.Name = "panelComplete";
-            this.panelComplete.Size = new System.Drawing.Size(381, 140);
-            this.panelComplete.TabIndex = 8;
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.dateTimePicker1);
-            this.groupBox10.Location = new System.Drawing.Point(21, 22);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(152, 42);
-            this.groupBox10.TabIndex = 7;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Дата выполнения";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(7, 16);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(137, 20);
-            this.dateTimePicker1.TabIndex = 0;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(6, 42);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(71, 17);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "В работе";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(7, 17);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(137, 21);
+            this.comboBox2.TabIndex = 0;
             // 
             // Form4
             // 
@@ -441,6 +464,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.panelComplete.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
             this.panelOrders.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
@@ -454,8 +479,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.panelComplete.ResumeLayout(false);
-            this.groupBox10.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -497,5 +521,7 @@
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

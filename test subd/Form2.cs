@@ -36,16 +36,19 @@ namespace test_subd
         {
             try
             {
+                dataGridView1.AllowUserToAddRows = false;
+                dataGridView2.AllowUserToAddRows = false;
                 // Добавляем обработчик события CellDoubleClick
                 dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
                 dataGridView1.CellClick += dataGridView1_CellClick;
 
                 if (roleForm != 1)
                 {
-                    btDelString.Enabled = false;
+                    groupBox3.Visible = false;
                     comboBox1.Items.RemoveAt(3);
                     comboBox1.Items.RemoveAt(3);
                     comboBox1.Items.RemoveAt(3);
+                    comboBox1.Items.RemoveAt(2);
                 }   
                 SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString);  
                 
