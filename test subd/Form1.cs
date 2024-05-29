@@ -72,6 +72,11 @@ namespace test_subd
                             Form4 fm = new Form4(connect);
                             fm.ShowDialog();
                         }
+                        else if(role == 4)
+                        {
+                            FormClient fm = new FormClient(connect);
+                            fm.ShowDialog();
+                        }
                         else
                         {
                             Form2 fm = new Form2(connect, role);

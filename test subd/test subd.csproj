@@ -70,6 +70,19 @@
     <Compile Include="Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormBusket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBusket.Designer.cs">
+      <DependentUpon>FormBusket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClient.Designer.cs">
+      <DependentUpon>FormClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Good.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -83,6 +96,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBusket.resx">
+      <DependentUpon>FormBusket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClient.resx">
+      <DependentUpon>FormClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
