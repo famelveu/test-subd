@@ -76,6 +76,12 @@
     <Compile Include="FormBusket.Designer.cs">
       <DependentUpon>FormBusket.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCaptcha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCaptcha.Designer.cs">
+      <DependentUpon>FormCaptcha.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBusket.resx">
       <DependentUpon>FormBusket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCaptcha.resx">
+      <DependentUpon>FormCaptcha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>

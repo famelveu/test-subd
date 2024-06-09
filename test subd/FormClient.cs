@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.IO;
 
 namespace test_subd
 {
@@ -29,6 +30,7 @@ namespace test_subd
         {
             try
             {
+                dataGridView1.CellClick += dataGridView1_CellClick;
                 dataGridView1.AllowUserToAddRows = false;
 
                 SqlConnection sqlConnect = new SqlConnection(Properties.Settings.Default.connectionString);
@@ -100,6 +102,48 @@ namespace test_subd
             else
             {
                 MessageBox.Show("В корзину чета добавь");
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow selectedRow = dataGridView1.CurrentRow;
+
+            // Получаем значения из нужных столбцов по индексу столбца
+            string id = selectedRow.Cells[0].Value.ToString();
+
+            // Запрос к базе данных для получения изображения по ID
+            string query = "SELECT pic_s FROM Services WHERE id = @ID";
+
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ID", id);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        // Получите данные изображения из базы данных
+                        byte[] imageData = (byte[])reader["pic_s"];
+
+                        // Отобразите изображение в PictureBox
+                        using (MemoryStream ms = new MemoryStream(imageData))
+                        {
+                            // Устанавливаем масштабирование по размеру PictureBox
+                            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                            pictureBox1.Image = Image.FromStream(ms);
+                        }
+                    }
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка: " + ex.Message);
+                }
             }
         }
     }

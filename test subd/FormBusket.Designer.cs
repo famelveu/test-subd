@@ -156,7 +156,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormBusket";
-            this.Text = "FormBusket";
+            this.Text = "Козина";
             this.Load += new System.EventHandler(this.FormBusket_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);

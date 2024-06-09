@@ -16,7 +16,7 @@ namespace test_subd
     {
 
         static SqlConnection connect = new SqlConnection(Properties.Settings.Default.connectionString);
-
+        private Timer btnConnectTimer;
 
         public frmAuthorization()
         {
@@ -67,12 +67,12 @@ namespace test_subd
                         this.Hide();
 
                         // Здесь можно перейти к другой форме или выполнить другие действия
-                        if(role == 2)
+                        if (role == 2)
                         {
                             Form4 fm = new Form4(connect);
                             fm.ShowDialog();
                         }
-                        else if(role == 4)
+                        else if (role == 4)
                         {
                             FormClient fm = new FormClient(connect);
                             fm.ShowDialog();
@@ -91,8 +91,9 @@ namespace test_subd
                 else
                 {
                     MessageBox.Show("Неверный логин или пароль!");
+                    FormCaptcha fm = new FormCaptcha();
+                    fm.ShowDialog();
                 }
-                
             }
             catch (Exception ex)
             {
@@ -102,6 +103,33 @@ namespace test_subd
             {
                 connect.Close();
             }
+        }
+
+        public void StartBtnConnectTimer()
+        {
+            // Создаем новый таймер
+            btnConnectTimer = new Timer();
+
+            // Устанавливаем интервал в 10 секунд
+            btnConnectTimer.Interval = 10000; // 10 секунд
+
+            // Добавляем обработчик события для события Tick таймера
+            btnConnectTimer.Tick += BtnConnectTimer_Tick;
+
+            // Запускаем таймер
+            btnConnectTimer.Start();
+
+            // Блокируем кнопку btnConnect
+            btnConnect.Enabled = false;
+        }
+
+        private void BtnConnectTimer_Tick(object sender, EventArgs e)
+        {
+            // Останавливаем таймер
+            btnConnectTimer.Stop();
+
+            // Разблокируем кнопку btnConnect
+            btnConnect.Enabled = true;
         }
     }
 }

@@ -1,0 +1,23 @@
+-- Обновление первой строки существующих данных
+UPDATE Services
+SET pic_s = (
+    SELECT BulkColumn
+    FROM OPENROWSET(BULK 'C:\Users\mnbvv\OneDrive\Рабочий стол\sch\=kw\test subd\services_logo1.jpg', SINGLE_BLOB) AS img
+)
+WHERE id = 1;
+
+-- Обновление второй строки существующих данных
+UPDATE Services
+SET pic_s = (
+    SELECT BulkColumn
+    FROM OPENROWSET(BULK 'C:\Users\mnbvv\OneDrive\Рабочий стол\sch\=kw\test subd\services_logo2.jpg', SINGLE_BLOB) AS img
+)
+WHERE id = 3;
+
+-- Обновление третьей строки существующих данных
+UPDATE Services
+SET pic_s = (
+    SELECT BulkColumn
+    FROM OPENROWSET(BULK 'C:\Users\mnbvv\OneDrive\Рабочий стол\sch\=kw\test subd\services_logo3.jpg', SINGLE_BLOB) AS img
+)
+WHERE id = 4;
